@@ -14,11 +14,15 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/passwordIcon.svg
+  SvgGenImage get passwordIcon =>
+      const SvgGenImage('assets/icons/passwordIcon.svg');
+
   /// File path: assets/icons/userIcon.svg
   SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [userIcon];
+  List<SvgGenImage> get values => [passwordIcon, userIcon];
 }
 
 class $AssetsImagesGen {
