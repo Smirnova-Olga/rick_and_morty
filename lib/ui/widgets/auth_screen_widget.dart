@@ -19,7 +19,7 @@ class AuthScreenWidget extends StatelessWidget {
             children: const [
               SizedBox(height: 50),
               BackgroundImageWidget(),
-              TextWidget(text: 'Login'),
+              TextWidget(text: 'Username'),
               SizedBox(height: 10),
               TextFieldWidget(
                 isLoginText: true,
@@ -75,7 +75,7 @@ class TextWidget extends StatelessWidget {
   }
 }
 
-class TextFieldWidget extends StatelessWidget {
+class TextFieldWidget extends StatefulWidget {
   final bool isLoginText;
 
   const TextFieldWidget({
@@ -84,40 +84,57 @@ class TextFieldWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+}
+
+class _TextFieldWidgetState extends State<TextFieldWidget> {
+  bool _isObscure = true;
+  @override
   Widget build(BuildContext context) {
     return TextField(
-      textAlign: TextAlign.left,
-      obscureText: isLoginText ? false : true,
-      obscuringCharacter: '•',
-      style: TextStyle(
-        color: ColorTheme.white000,
-        fontWeight: isLoginText ? FontWeight.w400 : FontWeight.w900,
-        letterSpacing: isLoginText ? 1 : 5,
-      ),
-      decoration: InputDecoration(
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-          borderSide: BorderSide(style: BorderStyle.none),
+        textAlign: TextAlign.left,
+        obscureText: widget.isLoginText ? false : _isObscure,
+        obscuringCharacter: '•',
+        style: TextStyle(
+          color: ColorTheme.white000,
+          fontWeight: widget.isLoginText ? FontWeight.w400 : FontWeight.w400,
+          letterSpacing: widget.isLoginText ? 1 : 5,
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-          borderSide: BorderSide(style: BorderStyle.none),
-        ),
-        filled: true,
-        fillColor: ColorTheme.grey,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
-          child: SvgPicture.asset(
-            isLoginText
-                ? Assets.icons.userIcon.path
-                : Assets.icons.passwordIcon.path,
-            color: ColorTheme.white100,
+        decoration: InputDecoration(
+          enabledBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+            borderSide: BorderSide(style: BorderStyle.none),
           ),
-        ),
-        hintText: isLoginText ? 'Login' : 'Password',
-        hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
-      ),
-    );
+          focusedBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+            borderSide: BorderSide(style: BorderStyle.none),
+          ),
+          filled: true,
+          fillColor: ColorTheme.grey,
+          prefixIcon: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
+            child: SvgPicture.asset(
+              widget.isLoginText
+                  ? Assets.icons.userIcon.path
+                  : Assets.icons.passwordIcon.path,
+              color: ColorTheme.white100,
+            ),
+          ),
+          hintText: widget.isLoginText ? 'Username' : 'Password',
+          hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
+          suffixIcon: widget.isLoginText
+              ? null
+              : IconButton(
+                  icon: Icon(
+                      _isObscure ? Icons.visibility : Icons.visibility_off),
+                  color: ColorTheme.white000,
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
+                ),
+        ));
   }
 }
 
@@ -132,9 +149,9 @@ class ButtonLoginWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        backgroundColor: ColorTheme.blue,
+        backgroundColor: ColorTheme.blue900,
       ),
-      onPressed: () {},
+      onPressed: () => _showDialogMessage(context),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Text(
@@ -143,6 +160,43 @@ class ButtonLoginWidget extends StatelessWidget {
             color: ColorTheme.white000,
           ),
         ),
+      ),
+    );
+  }
+
+  Future<String?> _showDialogMessage(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        titlePadding: const EdgeInsets.all(30),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+        actionsPadding: const EdgeInsets.all(30),
+        backgroundColor: ColorTheme.blue700,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        contentTextStyle:
+            AppTextTheme.body2.copyWith(color: ColorTheme.white000),
+        title: const Text('Error'),
+        titleTextStyle:
+            AppTextTheme.headline6.copyWith(color: ColorTheme.white000),
+        content: const Text('Incorrect username or password'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              minimumSize: const Size.fromHeight(30),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                side: const BorderSide(color: ColorTheme.blue900),
+              ),
+            ),
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: Text(
+              'OK',
+              style: AppTextTheme.subtitle1.copyWith(color: ColorTheme.blue900),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -166,7 +220,7 @@ class NewAccountWidget extends StatelessWidget {
         TextButton(
             onPressed: () {},
             child: const Text(
-              'Login',
+              'Create',
               style: TextStyle(color: ColorTheme.green),
             ))
       ],
