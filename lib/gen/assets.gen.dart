@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/back.svg
+  SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
+
   /// File path: assets/icons/passwordIcon.svg
   SvgGenImage get passwordIcon =>
       const SvgGenImage('assets/icons/passwordIcon.svg');
@@ -22,7 +25,7 @@ class $AssetsIconsGen {
   SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [passwordIcon, userIcon];
+  List<SvgGenImage> get values => [back, passwordIcon, userIcon];
 }
 
 class $AssetsImagesGen {

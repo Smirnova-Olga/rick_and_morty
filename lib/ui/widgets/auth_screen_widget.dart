@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/theme/color_theme.dart';
 import 'package:rick_and_morty/theme/app_text_theme.dart';
+import 'package:rick_and_morty/ui/widgets/create_account_widget.dart';
 
 class AuthScreenWidget extends StatelessWidget {
   const AuthScreenWidget({super.key});
@@ -18,20 +19,20 @@ class AuthScreenWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               SizedBox(height: 50),
-              BackgroundImageWidget(),
-              TextWidget(text: 'Username'),
+              _BackgroundImageWidget(),
+              _TextWidget(text: 'Username'),
               SizedBox(height: 10),
               TextFieldWidget(
                 isLoginText: true,
               ),
               SizedBox(height: 10),
-              TextWidget(text: 'Password'),
+              _TextWidget(text: 'Password'),
               SizedBox(height: 10),
               TextFieldWidget(
                 isLoginText: false,
               ),
-              SizedBox(height: 25),
-              ButtonLoginWidget(),
+              SizedBox(height: 30),
+              _ButtonLoginWidget(),
               SizedBox(height: 20),
               NewAccountWidget(),
             ],
@@ -42,8 +43,8 @@ class AuthScreenWidget extends StatelessWidget {
   }
 }
 
-class BackgroundImageWidget extends StatelessWidget {
-  const BackgroundImageWidget({
+class _BackgroundImageWidget extends StatelessWidget {
+  const _BackgroundImageWidget({
     Key? key,
   }) : super(key: key);
 
@@ -57,9 +58,9 @@ class BackgroundImageWidget extends StatelessWidget {
   }
 }
 
-class TextWidget extends StatelessWidget {
+class _TextWidget extends StatelessWidget {
   final String text;
-  const TextWidget({
+  const _TextWidget({
     Key? key,
     required this.text,
   }) : super(key: key);
@@ -97,10 +98,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         obscuringCharacter: '•',
         style: TextStyle(
           color: ColorTheme.white000,
-          fontWeight: widget.isLoginText ? FontWeight.w400 : FontWeight.w400,
+          fontWeight: FontWeight.w400,
           letterSpacing: widget.isLoginText ? 1 : 5,
         ),
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
           enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(12.0)),
             borderSide: BorderSide(style: BorderStyle.none),
@@ -138,8 +140,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   }
 }
 
-class ButtonLoginWidget extends StatelessWidget {
-  const ButtonLoginWidget({super.key});
+class _ButtonLoginWidget extends StatelessWidget {
+  const _ButtonLoginWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +155,7 @@ class ButtonLoginWidget extends StatelessWidget {
       ),
       onPressed: () => _showDialogMessage(context),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(7.0),
         child: Text(
           'Login',
           style: AppTextTheme.subtitle1.copyWith(
@@ -168,19 +170,22 @@ class ButtonLoginWidget extends StatelessWidget {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        titlePadding: const EdgeInsets.all(30),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
         actionsPadding: const EdgeInsets.all(30),
         backgroundColor: ColorTheme.blue700,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        contentTextStyle:
-            AppTextTheme.body2.copyWith(color: ColorTheme.white000),
         title: const Text('Error'),
+        titlePadding: const EdgeInsets.all(30),
         titleTextStyle:
             AppTextTheme.headline6.copyWith(color: ColorTheme.white000),
-        content: const Text('Incorrect username or password'),
+        content: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: const Text('Incorrect username or password'),
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+        contentTextStyle:
+            AppTextTheme.body2.copyWith(color: ColorTheme.white000),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
@@ -218,7 +223,13 @@ class NewAccountWidget extends StatelessWidget {
           style: AppTextTheme.body2.copyWith(color: ColorTheme.white100),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const CreateAccountWidget()),
+              );
+            },
             child: const Text(
               'Create',
               style: TextStyle(color: ColorTheme.green),

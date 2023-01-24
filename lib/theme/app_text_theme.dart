@@ -26,4 +26,10 @@ abstract class AppTextTheme {
     fontSize: 20,
     letterSpacing: 0.15,
   );
+  static const headline7 = TextStyle(
+    fontFamily: FontFamily.roboto,
+    fontWeight: FontWeight.w700,
+    fontSize: 34,
+    letterSpacing: 1.75,
+  );
 }
