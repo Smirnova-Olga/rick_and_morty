@@ -5,6 +5,7 @@ import 'package:rick_and_morty/theme/app_text_theme.dart';
 
 import 'package:rick_and_morty/theme/color_theme.dart';
 import 'package:rick_and_morty/ui/widgets/auth_screen_widget.dart';
+import 'package:rick_and_morty/ui/widgets/character_list.dart';
 
 class CreateAccountWidget extends StatelessWidget {
   const CreateAccountWidget({super.key});
@@ -56,7 +57,7 @@ class CreateAccountWidget extends StatelessWidget {
 }
 
 class _BackButtonWidget extends StatelessWidget {
-  const _BackButtonWidget({super.key});
+  const _BackButtonWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +150,7 @@ class _DividerWidget extends StatelessWidget {
 }
 
 class _ButtonLoginWidget extends StatelessWidget {
-  const _ButtonLoginWidget({super.key});
+  const _ButtonLoginWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +164,12 @@ class _ButtonLoginWidget extends StatelessWidget {
           ),
           backgroundColor: ColorTheme.blue900,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CharacterList()),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(7.0),
           child: Text(

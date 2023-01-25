@@ -14,11 +14,30 @@ abstract class AppTextTheme {
     fontSize: 14,
     letterSpacing: 0.25,
   );
+
   static const subtitle1 = TextStyle(
     fontFamily: FontFamily.roboto,
     fontWeight: FontWeight.w400,
     fontSize: 16,
     letterSpacing: 0.15,
+  );
+  static const subtitle2 = TextStyle(
+    fontFamily: FontFamily.roboto,
+    fontWeight: FontWeight.w500,
+    fontSize: 10,
+    letterSpacing: 1.5,
+  );
+  static const subtitle3 = TextStyle(
+    fontFamily: FontFamily.roboto,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    letterSpacing: 0.5,
+  );
+  static const subtitle4 = TextStyle(
+    fontFamily: FontFamily.roboto,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    letterSpacing: 0.5,
   );
   static const headline6 = TextStyle(
     fontFamily: FontFamily.roboto,

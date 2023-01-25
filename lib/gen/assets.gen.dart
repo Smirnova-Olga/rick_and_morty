@@ -17,19 +17,41 @@ class $AssetsIconsGen {
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
+  /// File path: assets/icons/filter.svg
+  SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
+
   /// File path: assets/icons/passwordIcon.svg
   SvgGenImage get passwordIcon =>
       const SvgGenImage('assets/icons/passwordIcon.svg');
+
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
+
+  /// File path: assets/icons/sort.svg
+  SvgGenImage get sort => const SvgGenImage('assets/icons/sort.svg');
 
   /// File path: assets/icons/userIcon.svg
   SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [back, passwordIcon, userIcon];
+  List<SvgGenImage> get values =>
+      [back, filter, passwordIcon, search, sort, userIcon];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/agency_director.png
+  AssetGenImage get agencyDirector =>
+      const AssetGenImage('assets/images/agency_director.png');
+
+  /// File path: assets/images/alan_riles.png
+  AssetGenImage get alanRiles =>
+      const AssetGenImage('assets/images/alan_riles.png');
+
+  /// File path: assets/images/albert_einstein.png
+  AssetGenImage get albertEinstein =>
+      const AssetGenImage('assets/images/albert_einstein.png');
 
   /// File path: assets/images/background_image.png
   AssetGenImage get backgroundImage =>
@@ -47,16 +69,34 @@ class $AssetsImagesGen {
   AssetGenImage get homeScreenImage3 =>
       const AssetGenImage('assets/images/home_screen_image_3.png');
 
+  /// File path: assets/images/morty_smith.png
+  AssetGenImage get mortySmith =>
+      const AssetGenImage('assets/images/morty_smith.png');
+
+  /// File path: assets/images/rick_sanchez.png
+  AssetGenImage get rickSanchez =>
+      const AssetGenImage('assets/images/rick_sanchez.png');
+
+  /// File path: assets/images/summer_smith.png
+  AssetGenImage get summerSmith =>
+      const AssetGenImage('assets/images/summer_smith.png');
+
   /// File path: assets/images/text_image.png
   AssetGenImage get textImage =>
       const AssetGenImage('assets/images/text_image.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        agencyDirector,
+        alanRiles,
+        albertEinstein,
         backgroundImage,
         homeScreenImage1,
         homeScreenImage2,
         homeScreenImage3,
+        mortySmith,
+        rickSanchez,
+        summerSmith,
         textImage
       ];
 }
