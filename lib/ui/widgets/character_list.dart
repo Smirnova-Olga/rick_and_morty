@@ -5,8 +5,21 @@ import 'package:rick_and_morty/models/character.dart';
 import 'package:rick_and_morty/theme/app_text_theme.dart';
 import 'package:rick_and_morty/theme/color_theme.dart';
 
-class CharacterList extends StatelessWidget {
+class CharacterList extends StatefulWidget {
   const CharacterList({super.key});
+
+  @override
+  State<CharacterList> createState() => _CharacterListState();
+}
+
+class _CharacterListState extends State<CharacterList> {
+  bool isList = true;
+
+  void onTap() {
+    setState(() {
+      isList = !isList;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +28,16 @@ class CharacterList extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          children: const [
-            SizedBox(height: 54),
-            _FindCharacterTextField(),
-            _HeadLineWidget(),
-            ListViewCharacters(),
+          children: [
+            const SizedBox(height: 54),
+            const _FindCharacterTextField(),
+            _HeadLineWidget(
+              onViewModeTap: onTap,
+              isList: isList,
+            ),
+            ViewCharacters(
+              isList: isList,
+            ),
           ],
         ),
       ),
@@ -80,12 +98,17 @@ class _FindCharacterTextField extends StatelessWidget {
 }
 
 class _HeadLineWidget extends StatelessWidget {
-  const _HeadLineWidget();
+  final VoidCallback onViewModeTap;
+  final bool isList;
+  const _HeadLineWidget({
+    required this.onViewModeTap,
+    required this.isList,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -95,51 +118,156 @@ class _HeadLineWidget extends StatelessWidget {
               color: ColorTheme.white100,
             ),
           ),
-          SvgPicture.asset(Assets.icons.sort.path),
+          IconButton(
+            icon: SvgPicture.asset(
+                isList ? Assets.icons.sort.path : Assets.icons.list.path),
+            onPressed: onViewModeTap,
+          ),
         ],
       ),
     );
   }
 }
 
-class ListViewCharacters extends StatelessWidget {
-  const ListViewCharacters({super.key});
+class ViewCharacters extends StatelessWidget {
+  final bool isList;
+  const ViewCharacters({
+    super.key,
+    required this.isList,
+  });
+
+  final String alive = 'ALIVE';
+
+  final String dead = 'DEAD';
 
   @override
   Widget build(BuildContext context) {
     final List<Character> character = [
       Character(
-          avatar: 'assets/images/rick_sanchez.png',
-          status: 'ALIVE',
-          name: 'Rick Sanchez',
-          sex: 'Human, Male'),
+        avatar: 'assets/images/rick_sanchez.png',
+        status: alive,
+        name: 'Rick Sanchez',
+        sex: 'Human, Male',
+      ),
       Character(
-          avatar: 'assets/images/agency_director.png',
-          status: 'ALIVE',
-          name: 'Agency Director',
-          sex: 'Human, Male'),
+        avatar: 'assets/images/agency_director.png',
+        status: alive,
+        name: 'Agency Director',
+        sex: 'Human, Male',
+      ),
       Character(
-          avatar: 'assets/images/morty_smith.png',
-          status: 'ALIVE',
-          name: 'Morty Smith',
-          sex: 'Human, Male'),
+        avatar: 'assets/images/morty_smith.png',
+        status: alive,
+        name: 'Morty Smith',
+        sex: 'Human, Male',
+      ),
       Character(
-          avatar: 'assets/images/summer_smith.png',
-          status: 'ALIVE',
-          name: 'Summer Smith',
-          sex: 'Human, Female'),
+        avatar: 'assets/images/summer_smith.png',
+        status: alive,
+        name: 'Summer Smith',
+        sex: 'Human, Female',
+      ),
       Character(
-          avatar: 'assets/images/albert_einstein.png',
-          status: 'DEAD',
-          name: 'Albert Einstein',
-          sex: 'Human, Male'),
+        avatar: 'assets/images/albert_einstein.png',
+        status: dead,
+        name: 'Albert Einstein',
+        sex: 'Human, Male',
+      ),
       Character(
-          avatar: 'assets/images/alan_riles.png',
-          status: 'DEAD',
-          name: 'Alan Riles',
-          sex: 'Human, Male'),
+        avatar: 'assets/images/alan_riles.png',
+        status: dead,
+        name: 'Alan Riles',
+        sex: 'Human, Male',
+      ),
     ];
+    return isList
+        ? ListWidget(character: character, alive: alive)
+        : GridWidget(character: character, alive: alive);
+  }
+}
 
+class GridWidget extends StatelessWidget {
+  const GridWidget({
+    Key? key,
+    required this.character,
+    required this.alive,
+  }) : super(key: key);
+
+  final List<Character> character;
+  final String alive;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisExtent: 200,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 30,
+          ),
+          itemCount: character.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                SizedBox(
+                  width: 120,
+                  height: 122,
+                  child: Image(
+                    image: AssetImage(character[index].avatar),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Text(
+                    character[index].status,
+                    style: AppTextTheme.subtitle2.copyWith(
+                      color: character[index].status == alive
+                          ? ColorTheme.green
+                          : ColorTheme.red,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    character[index].name,
+                    style: AppTextTheme.subtitle5.copyWith(
+                      color: ColorTheme.white000,
+                    ),
+                  ),
+                ),
+                Text(
+                  character[index].sex,
+                  style: AppTextTheme.subtitle4.copyWith(
+                    color: ColorTheme.white100,
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class ListWidget extends StatelessWidget {
+  const ListWidget({
+    Key? key,
+    required this.character,
+    required this.alive,
+  }) : super(key: key);
+
+  final List<Character> character;
+  final String alive;
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: MediaQuery.removePadding(
         context: context,
@@ -165,7 +293,9 @@ class ListViewCharacters extends StatelessWidget {
                             child: Text(
                               character[index].status,
                               style: AppTextTheme.subtitle2.copyWith(
-                                color: ColorTheme.green,
+                                color: character[index].status == alive
+                                    ? ColorTheme.green
+                                    : ColorTheme.red,
                               ),
                             ),
                           ),
@@ -197,7 +327,3 @@ class ListViewCharacters extends StatelessWidget {
     );
   }
 }
-
-
-
-// 

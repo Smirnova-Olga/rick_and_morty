@@ -39,6 +39,12 @@ abstract class AppTextTheme {
     fontSize: 12,
     letterSpacing: 0.5,
   );
+  static const subtitle5 = TextStyle(
+    fontFamily: FontFamily.roboto,
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    letterSpacing: 0.1,
+  );
   static const headline6 = TextStyle(
     fontFamily: FontFamily.roboto,
     fontWeight: FontWeight.w500,

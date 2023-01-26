@@ -14,11 +14,26 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/icons/Settings.svg');
+
   /// File path: assets/icons/back.svg
   SvgGenImage get back => const SvgGenImage('assets/icons/back.svg');
 
+  /// File path: assets/icons/character.svg
+  SvgGenImage get character => const SvgGenImage('assets/icons/character.svg');
+
+  /// File path: assets/icons/episode.svg
+  SvgGenImage get episode => const SvgGenImage('assets/icons/episode.svg');
+
   /// File path: assets/icons/filter.svg
   SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
+
+  /// File path: assets/icons/list.svg
+  SvgGenImage get list => const SvgGenImage('assets/icons/list.svg');
+
+  /// File path: assets/icons/location.svg
+  SvgGenImage get location => const SvgGenImage('assets/icons/location.svg');
 
   /// File path: assets/icons/passwordIcon.svg
   SvgGenImage get passwordIcon =>
@@ -34,8 +49,19 @@ class $AssetsIconsGen {
   SvgGenImage get userIcon => const SvgGenImage('assets/icons/userIcon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [back, filter, passwordIcon, search, sort, userIcon];
+  List<SvgGenImage> get values => [
+        settings,
+        back,
+        character,
+        episode,
+        filter,
+        list,
+        location,
+        passwordIcon,
+        search,
+        sort,
+        userIcon
+      ];
 }
 
 class $AssetsImagesGen {
