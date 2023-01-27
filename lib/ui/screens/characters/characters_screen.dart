@@ -1,25 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rick_and_morty/gen/assets.gen.dart';
-import 'package:rick_and_morty/models/character.dart';
-import 'package:rick_and_morty/theme/app_text_theme.dart';
-import 'package:rick_and_morty/theme/color_theme.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+part of 'characters.dart';
 
-class CharacterList extends StatefulWidget {
-  const CharacterList({super.key});
-
-  @override
-  State<CharacterList> createState() => _CharacterListState();
-}
-
-class _CharacterListState extends State<CharacterList> {
-  bool isList = true;
-
-  void onTap() {
-    setState(() {
-      isList = !isList;
-    });
-  }
+class CharactersScreen extends StatelessWidget {
+  final List<Character> characters;
+  final bool isList;
+  const CharactersScreen({
+    Key? key,
+    required this.characters,
+    required this.isList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +21,10 @@ class _CharacterListState extends State<CharacterList> {
             const SizedBox(height: 54),
             const _FindCharacterTextField(),
             _HeadLineWidget(
-              onViewModeTap: onTap,
               isList: isList,
             ),
             ViewCharacters(
+              characters: characters,
               isList: isList,
             ),
           ],
@@ -98,10 +87,8 @@ class _FindCharacterTextField extends StatelessWidget {
 }
 
 class _HeadLineWidget extends StatelessWidget {
-  final VoidCallback onViewModeTap;
   final bool isList;
   const _HeadLineWidget({
-    required this.onViewModeTap,
     required this.isList,
   });
 
@@ -121,7 +108,9 @@ class _HeadLineWidget extends StatelessWidget {
           IconButton(
             icon: SvgPicture.asset(
                 isList ? Assets.icons.sort.path : Assets.icons.list.path),
-            onPressed: onViewModeTap,
+            onPressed: () => context.read<CharactersBloc>().add(
+                  CharactersViewSwitched(),
+                ),
           ),
         ],
       ),
@@ -130,11 +119,13 @@ class _HeadLineWidget extends StatelessWidget {
 }
 
 class ViewCharacters extends StatelessWidget {
+  final List<Character> characters;
   final bool isList;
   const ViewCharacters({
-    super.key,
+    Key? key,
+    required this.characters,
     required this.isList,
-  });
+  }) : super(key: key);
 
   final String alive = 'ALIVE';
 
@@ -142,47 +133,9 @@ class ViewCharacters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Character> character = [
-      Character(
-        avatar: 'assets/images/rick_sanchez.png',
-        status: alive,
-        name: 'Rick Sanchez',
-        sex: 'Human, Male',
-      ),
-      Character(
-        avatar: 'assets/images/agency_director.png',
-        status: alive,
-        name: 'Agency Director',
-        sex: 'Human, Male',
-      ),
-      Character(
-        avatar: 'assets/images/morty_smith.png',
-        status: alive,
-        name: 'Morty Smith',
-        sex: 'Human, Male',
-      ),
-      Character(
-        avatar: 'assets/images/summer_smith.png',
-        status: alive,
-        name: 'Summer Smith',
-        sex: 'Human, Female',
-      ),
-      Character(
-        avatar: 'assets/images/albert_einstein.png',
-        status: dead,
-        name: 'Albert Einstein',
-        sex: 'Human, Male',
-      ),
-      Character(
-        avatar: 'assets/images/alan_riles.png',
-        status: dead,
-        name: 'Alan Riles',
-        sex: 'Human, Male',
-      ),
-    ];
     return isList
-        ? ListWidget(character: character, alive: alive)
-        : GridWidget(character: character, alive: alive);
+        ? ListWidget(character: characters, alive: alive)
+        : GridWidget(character: characters, alive: alive);
   }
 }
 

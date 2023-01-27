@@ -1,3 +1,5 @@
+part of '../characters.dart';
+
 class Character {
   String avatar;
   String status;

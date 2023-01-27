@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/theme/color_theme.dart';
-import 'package:rick_and_morty/ui/widgets/character_list.dart';
+import 'package:rick_and_morty/ui/screens/characters/characters.dart';
 
-class StartScreenWidget extends StatefulWidget {
-  const StartScreenWidget({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<StartScreenWidget> createState() => _StartScreenWidgetState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _StartScreenWidgetState extends State<StartScreenWidget> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedTab = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    CharacterList(),
-    Text(
+  static final List<Widget> _widgetOptions = <Widget>[
+    const AppCharacters(),
+    const Text(
       'Locations',
     ),
-    Text(
+    const Text(
       'Episodes',
     ),
-    Text(
+    const Text(
       'Settings',
     ),
   ];
