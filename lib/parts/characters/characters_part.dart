@@ -31,11 +31,7 @@ class CharactersPart extends StatelessWidget {
               isList: state.isList,
             );
           } else {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return const AppLoadingScreen();
           }
         },
       ),

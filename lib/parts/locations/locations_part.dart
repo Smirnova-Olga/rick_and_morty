@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/parts/locations/mock_data/mock_data.dart';
+import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
 part 'bloc/locations_bloc.dart';
 part 'bloc/locations_event.dart';
@@ -23,15 +24,9 @@ class LocationsPart extends StatelessWidget {
           if (state is LocationsLoadFailure) {
             return Container();
           } else if (state is LocationsLoadSuccess) {
-            // TODO add LocationsScreen
-
-            return Container();
+            return LocationsScreen(locations: state.locations);
           } else {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return const AppLoadingScreen();
           }
         },
       ),

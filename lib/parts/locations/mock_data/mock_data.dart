@@ -11,4 +11,9 @@ final List<Location> locations = [
     name: 'Anatomical Park',
     description: 'World • Dimension C-137',
   ),
+  Location(
+    image: 'assets/images/earth.png',
+    name: 'Earth C-137',
+    description: 'World • Dimension C-137',
+  ),
 ];

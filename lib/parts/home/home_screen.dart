@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:rick_and_morty/gen/assets.gen.dart';
-import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/parts/characters/characters_part.dart';
+part of 'home_part.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,9 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const CharactersPart(),
-    const Text(
-      'Locations',
-    ),
+    const LocationsPart(),
     const Text(
       'Episodes',
     ),

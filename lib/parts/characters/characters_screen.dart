@@ -19,65 +19,15 @@ class CharactersScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 54),
-            const _FindCharacterTextField(),
+            const FindTextFieldWidget(
+              hintText: 'Find character',
+            ),
             _HeadLineWidget(
               isList: isList,
             ),
             ViewCharacters(
               characters: characters,
               isList: isList,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _FindCharacterTextField extends StatelessWidget {
-  const _FindCharacterTextField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      textAlign: TextAlign.left,
-      style: const TextStyle(
-        color: ColorTheme.white000,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 0.5,
-      ),
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-          borderSide: BorderSide(style: BorderStyle.none),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-          borderSide: BorderSide(style: BorderStyle.none),
-        ),
-        filled: true,
-        fillColor: ColorTheme.grey,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 12, 10, 12),
-          child: SvgPicture.asset(Assets.icons.search.path),
-        ),
-        hintText: 'Find character',
-        hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
-        suffixIcon: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 24,
-              width: 1,
-              color: ColorTheme.white100,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 12, 15, 12),
-              child: SvgPicture.asset(Assets.icons.filter.path),
             ),
           ],
         ),
@@ -95,12 +45,12 @@ class _HeadLineWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'ALL CHARACTER: 200',
+            'ALL CHARACTER: ${characters.length.toString()}',
             style: AppTextTheme.subtitle2.copyWith(
               color: ColorTheme.white100,
             ),
