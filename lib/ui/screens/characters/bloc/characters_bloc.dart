@@ -4,13 +4,12 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   CharactersBloc() : super(CharactersInitial()) {
     on(_onCharactersOpened);
     on(_onCharactersViewSwitched);
+    on(_onCharactersSearched);
   }
 
   Future<void> _onCharactersOpened(
       CharactersOpened event, Emitter<CharactersState> emit) async {
-    await Future.delayed(const Duration(milliseconds: 500), () {
-      emit(CharactersLoadSuccess(characters: characters, isList: true));
-    });
+    emit(CharactersLoadSuccess(characters: characters, isList: true));
   }
 
   Future<void> _onCharactersViewSwitched(
@@ -19,5 +18,10 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       final currentState = state as CharactersLoadSuccess;
       emit(currentState.copyWith(isList: !currentState.isList));
     }
+  }
+
+  Future<void> _onCharactersSearched(
+      CharactersSearched event, Emitter<CharactersState> emit) async {
+    emit(CharactersLoadSuccess(characters: characters, isList: true));
   }
 }
