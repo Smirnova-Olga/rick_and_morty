@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/theme/color_theme.dart';
-import 'package:rick_and_morty/ui/screens/auth/auth_screen_widget.dart';
+import 'package:rick_and_morty/ui_kit/ui_kit.dart';
+import 'package:rick_and_morty/parts/auth/auth_screen_widget.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

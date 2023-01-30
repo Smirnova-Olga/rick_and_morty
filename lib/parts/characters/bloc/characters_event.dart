@@ -1,4 +1,4 @@
-part of '../characters.dart';
+part of '../characters_part.dart';
 
 abstract class CharactersEvent {}
 

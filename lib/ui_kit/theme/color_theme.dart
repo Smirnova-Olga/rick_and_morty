@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../ui_kit.dart';
 
 abstract class ColorTheme {
   static const voilet = Color(0xFF0B1E2D);

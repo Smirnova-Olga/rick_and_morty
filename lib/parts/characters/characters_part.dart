@@ -1,13 +1,12 @@
-library characters;
+library characters_part;
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
-import 'package:rick_and_morty/theme/app_text_theme.dart';
-import 'package:rick_and_morty/theme/color_theme.dart';
-import 'package:rick_and_morty/ui/screens/characters/mock_data/mock_data.dart';
+import 'package:rick_and_morty/ui_kit/ui_kit.dart';
+import 'package:rick_and_morty/parts/characters/mock_data/mock_data.dart';
 
 part 'bloc/characters_bloc.dart';
 part 'bloc/characters_event.dart';
@@ -15,8 +14,8 @@ part 'bloc/characters_state.dart';
 part 'characters_screen.dart';
 part 'models/character.dart';
 
-class AppCharacters extends StatelessWidget {
-  const AppCharacters({super.key});
+class CharactersPart extends StatelessWidget {
+  const CharactersPart({super.key});
 
   @override
   Widget build(BuildContext context) {

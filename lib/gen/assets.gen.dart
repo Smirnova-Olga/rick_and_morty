@@ -79,9 +79,16 @@ class $AssetsImagesGen {
   AssetGenImage get albertEinstein =>
       const AssetGenImage('assets/images/albert_einstein.png');
 
+  /// File path: assets/images/anatomical_park.png
+  AssetGenImage get anatomicalPark =>
+      const AssetGenImage('assets/images/anatomical_park.png');
+
   /// File path: assets/images/background_image.png
   AssetGenImage get backgroundImage =>
       const AssetGenImage('assets/images/background_image.png');
+
+  /// File path: assets/images/earth.png
+  AssetGenImage get earth => const AssetGenImage('assets/images/earth.png');
 
   /// File path: assets/images/home_screen_image_1.png
   AssetGenImage get homeScreenImage1 =>
@@ -116,7 +123,9 @@ class $AssetsImagesGen {
         agencyDirector,
         alanRiles,
         albertEinstein,
+        anatomicalPark,
         backgroundImage,
+        earth,
         homeScreenImage1,
         homeScreenImage2,
         homeScreenImage3,

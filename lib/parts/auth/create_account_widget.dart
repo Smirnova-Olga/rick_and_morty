@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
-import 'package:rick_and_morty/theme/app_text_theme.dart';
-import 'package:rick_and_morty/theme/color_theme.dart';
-import 'package:rick_and_morty/ui/screens/auth/auth_screen_widget.dart';
-import 'package:rick_and_morty/ui/screens/home/home_screen.dart';
+import 'package:rick_and_morty/ui_kit/ui_kit.dart';
+import 'package:rick_and_morty/parts/auth/auth_screen_widget.dart';
+import 'package:rick_and_morty/parts/home/home_screen.dart';
 
 class CreateAccountWidget extends StatelessWidget {
   const CreateAccountWidget({super.key});

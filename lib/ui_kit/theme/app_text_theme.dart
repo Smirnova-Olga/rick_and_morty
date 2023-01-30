@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:rick_and_morty/gen/fonts.gen.dart';
+part of '../ui_kit.dart';
 
 abstract class AppTextTheme {
   static const body1 = TextStyle(

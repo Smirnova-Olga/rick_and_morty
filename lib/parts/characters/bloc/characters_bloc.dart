@@ -1,4 +1,4 @@
-part of '../characters.dart';
+part of '../characters_part.dart';
 
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   CharactersBloc() : super(CharactersInitial()) {
@@ -22,6 +22,6 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
 
   Future<void> _onCharactersSearched(
       CharactersSearched event, Emitter<CharactersState> emit) async {
-    emit(CharactersLoadSuccess(characters: characters, isList: true));
+    // TODO: add realization
   }
 }

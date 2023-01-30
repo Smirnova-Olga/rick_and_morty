@@ -1,4 +1,4 @@
-part of '../characters.dart';
+part of '../characters_part.dart';
 
 abstract class CharactersState extends Equatable {
   @override
@@ -11,7 +11,10 @@ class CharactersLoadSuccess extends CharactersState {
   final List<Character> characters;
   final bool isList;
 
-  CharactersLoadSuccess({required this.characters, required this.isList});
+  CharactersLoadSuccess({
+    required this.characters,
+    required this.isList,
+  });
   @override
   List<Object?> get props => [characters, isList];
 

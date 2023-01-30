@@ -1,4 +1,4 @@
-import 'package:rick_and_morty/ui/screens/characters/characters.dart';
+import 'package:rick_and_morty/parts/characters/characters_part.dart';
 
 final List<Character> characters = [
   Character(

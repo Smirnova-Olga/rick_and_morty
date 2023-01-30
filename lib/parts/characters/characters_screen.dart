@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'characters.dart';
+part of 'characters_part.dart';
 
 class CharactersScreen extends StatelessWidget {
   final List<Character> characters;
