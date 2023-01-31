@@ -1,12 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../locations_part.dart';
 
+@JsonSerializable()
 class Location {
-  String image;
-  String name;
-  String description;
+  final int id;
+  final String name;
+  final String type;
+  final String dimension;
+  final List residents;
+  final String url;
+  final String created;
+
   Location({
-    required this.image,
+    required this.id,
     required this.name,
-    required this.description,
+    required this.type,
+    required this.dimension,
+    required this.residents,
+    required this.url,
+    required this.created,
   });
 }

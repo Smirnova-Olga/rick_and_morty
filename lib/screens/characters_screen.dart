@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'characters_part.dart';
+part of '../parts/characters/characters_part.dart';
 
 class CharactersScreen extends StatelessWidget {
   final List<Character> characters;
@@ -116,13 +116,13 @@ class GridWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 120,
                   height: 122,
-                  child: Image(
-                    image: AssetImage(character[index].avatar),
-                    fit: BoxFit.fill,
-                  ),
+                  //  TODO child: Image(
+                  //   image: AssetImage(character[index].avatar),
+                  //   fit: BoxFit.fill,
+                  // ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
@@ -145,7 +145,8 @@ class GridWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  character[index].sex,
+                  '',
+                  // TODO character[index].sex,
                   style: AppTextTheme.subtitle4.copyWith(
                     color: ColorTheme.white100,
                   ),
@@ -184,7 +185,7 @@ class ListWidget extends StatelessWidget {
                 height: 74,
                 child: Row(
                   children: [
-                    Image(image: AssetImage(character[index].avatar)),
+                    // TODO Image(image: AssetImage(character[index].avatar)),
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Column(
@@ -212,7 +213,8 @@ class ListWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            character[index].sex,
+                            '',
+                            // TODO character[index].sex,
                             style: AppTextTheme.subtitle4.copyWith(
                               color: ColorTheme.white100,
                             ),

@@ -1,4 +1,4 @@
-part of 'locations_part.dart';
+part of '../parts/locations/locations_part.dart';
 
 class LocationsScreen extends StatelessWidget {
   final List<Location> locations;
@@ -69,10 +69,10 @@ class LocationListWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Image(
-                      image: AssetImage(locations[index].image),
-                      fit: BoxFit.fitWidth,
-                    ),
+                    // TODO Image(
+                    //   image: AssetImage(locations[index].image),
+                    //   fit: BoxFit.fitWidth,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 12, 26, 5),
                       child: Text(
@@ -84,7 +84,8 @@ class LocationListWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        locations[index].description,
+                        '',
+                        // TODO locations[index].description,
                         style: AppTextTheme.subtitle4
                             .copyWith(color: ColorTheme.white100),
                       ),
