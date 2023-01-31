@@ -1,5 +1,9 @@
-import 'dart:io';
+import 'package:dio/dio.dart';
 
 class ApiClient {
-  final client = HttpClient();
+  Dio init() {
+    return Dio(
+      BaseOptions(baseUrl: 'https://rickandmortyapi.com/api'),
+    );
+  }
 }
