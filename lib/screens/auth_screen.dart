@@ -4,8 +4,8 @@ import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 import 'package:rick_and_morty/parts/auth/create_account_widget.dart';
 
-class AuthScreenWidget extends StatelessWidget {
-  const AuthScreenWidget({super.key});
+class AuthScreen extends StatelessWidget {
+  const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

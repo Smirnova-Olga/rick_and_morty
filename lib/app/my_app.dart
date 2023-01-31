@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/screens/auth_screen_widget.dart';
+import 'package:rick_and_morty/screens/auth_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const Scaffold(
-        body: AuthScreenWidget(),
+        body: AuthScreen(),
       ),
     );
   }
