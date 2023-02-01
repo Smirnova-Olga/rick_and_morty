@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of '../parts/characters/characters_part.dart';
 
 class CharactersScreen extends StatelessWidget {
@@ -24,6 +23,7 @@ class CharactersScreen extends StatelessWidget {
             ),
             _HeadLineWidget(
               isList: isList,
+              charactersCount: characters.length,
             ),
             ViewCharacters(
               characters: characters,
@@ -37,9 +37,11 @@ class CharactersScreen extends StatelessWidget {
 }
 
 class _HeadLineWidget extends StatelessWidget {
+  final int charactersCount;
   final bool isList;
   const _HeadLineWidget({
     required this.isList,
+    required this.charactersCount,
   });
 
   @override
@@ -50,7 +52,7 @@ class _HeadLineWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'ALL CHARACTER: ${characters.length.toString()}',
+            'ALL CHARACTER: $charactersCount',
             style: AppTextTheme.subtitle2.copyWith(
               color: ColorTheme.white100,
             ),
@@ -84,7 +86,7 @@ class ViewCharacters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isList
-        ? ListWidget(character: characters, alive: alive)
+        ? ListWidget(character: characters)
         : GridWidget(character: characters, alive: alive);
   }
 }
@@ -116,20 +118,17 @@ class GridWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 120,
                   height: 122,
-                  //  TODO child: Image(
-                  //   image: AssetImage(character[index].avatar),
-                  //   fit: BoxFit.fill,
-                  // ),
+                  child: ClipOval(child: Image.network(character[index].image)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Text(
-                    character[index].status,
+                    character[index].status.toUpperCase(),
                     style: AppTextTheme.subtitle2.copyWith(
-                      color: character[index].status == alive
+                      color: character[index].status == 'Alive'
                           ? ColorTheme.green
                           : ColorTheme.red,
                     ),
@@ -145,8 +144,7 @@ class GridWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '',
-                  // TODO character[index].sex,
+                  '${character[index].species}, ${character[index].gender}',
                   style: AppTextTheme.subtitle4.copyWith(
                     color: ColorTheme.white100,
                   ),
@@ -164,11 +162,9 @@ class ListWidget extends StatelessWidget {
   const ListWidget({
     Key? key,
     required this.character,
-    required this.alive,
   }) : super(key: key);
 
   final List<Character> character;
-  final String alive;
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +181,7 @@ class ListWidget extends StatelessWidget {
                 height: 74,
                 child: Row(
                   children: [
-                    // TODO Image(image: AssetImage(character[index].avatar)),
+                    ClipOval(child: Image.network(character[index].image)),
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Column(
@@ -195,9 +191,9 @@ class ListWidget extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 3),
                             child: Text(
-                              character[index].status,
+                              character[index].status.toUpperCase(),
                               style: AppTextTheme.subtitle2.copyWith(
-                                color: character[index].status == alive
+                                color: character[index].status == 'Alive'
                                     ? ColorTheme.green
                                     : ColorTheme.red,
                               ),
@@ -213,8 +209,7 @@ class ListWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '',
-                            // TODO character[index].sex,
+                            '${character[index].species}, ${character[index].gender}',
                             style: AppTextTheme.subtitle4.copyWith(
                               color: ColorTheme.white100,
                             ),

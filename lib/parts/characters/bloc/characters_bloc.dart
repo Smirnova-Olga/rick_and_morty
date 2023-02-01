@@ -1,7 +1,8 @@
 part of '../characters_part.dart';
 
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
-  CharactersBloc() : super(CharactersInitial()) {
+  final ApiClient apiClient;
+  CharactersBloc(this.apiClient) : super(CharactersInitial()) {
     on(_onCharactersOpened);
     on(_onCharactersViewSwitched);
     on(_onCharactersSearched);
@@ -9,7 +10,8 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
 
   Future<void> _onCharactersOpened(
       CharactersOpened event, Emitter<CharactersState> emit) async {
-    emit(CharactersLoadSuccess(characters: characters, isList: true));
+    final charactersList = await apiClient.fetchCharacters();
+    emit(CharactersLoadSuccess(characters: charactersList, isList: true));
   }
 
   Future<void> _onCharactersViewSwitched(
