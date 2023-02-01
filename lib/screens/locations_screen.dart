@@ -12,21 +12,21 @@ class LocationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorTheme.voilet,
-      body: Column(children: [
-        const SizedBox(
-          height: 54,
-        ),
-        const FindTextFieldWidget(
-          hintText: 'Find location',
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
-          child: _HeadLineWidget(locationsCount: locations.length),
-        ),
-        LocationListWidget(
-          locations: locations,
-        )
-      ]),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(children: [
+          const SizedBox(
+            height: 54,
+          ),
+          const FindTextFieldWidget(
+            hintText: 'Find location',
+          ),
+          _HeadLineWidget(locationsCount: locations.length),
+          LocationListWidget(
+            locations: locations,
+          )
+        ]),
+      ),
     );
   }
 }
@@ -40,16 +40,19 @@ class _HeadLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          'ALL LOCATIONS: $locationsCount',
-          style: AppTextTheme.subtitle2.copyWith(
-            color: ColorTheme.white100,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Row(
+        children: [
+          Text(
+            'ALL LOCATIONS: $locationsCount',
+            style: AppTextTheme.subtitle2.copyWith(
+              color: ColorTheme.white100,
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -71,7 +74,7 @@ class LocationListWidget extends StatelessWidget {
           itemCount: locations.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
+              padding: const EdgeInsets.only(top: 24),
               child: Container(
                 height: 218,
                 clipBehavior: Clip.hardEdge,

@@ -67,18 +67,6 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/agency_director.png
-  AssetGenImage get agencyDirector =>
-      const AssetGenImage('assets/images/agency_director.png');
-
-  /// File path: assets/images/alan_riles.png
-  AssetGenImage get alanRiles =>
-      const AssetGenImage('assets/images/alan_riles.png');
-
-  /// File path: assets/images/albert_einstein.png
-  AssetGenImage get albertEinstein =>
-      const AssetGenImage('assets/images/albert_einstein.png');
-
   /// File path: assets/images/anatomical_park.png
   AssetGenImage get anatomicalPark =>
       const AssetGenImage('assets/images/anatomical_park.png');
@@ -89,6 +77,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/earth.png
   AssetGenImage get earth => const AssetGenImage('assets/images/earth.png');
+
+  /// File path: assets/images/episodeImage.png
+  AssetGenImage get episodeImage =>
+      const AssetGenImage('assets/images/episodeImage.png');
 
   /// File path: assets/images/home_screen_image_1.png
   AssetGenImage get homeScreenImage1 =>
@@ -102,36 +94,19 @@ class $AssetsImagesGen {
   AssetGenImage get homeScreenImage3 =>
       const AssetGenImage('assets/images/home_screen_image_3.png');
 
-  /// File path: assets/images/morty_smith.png
-  AssetGenImage get mortySmith =>
-      const AssetGenImage('assets/images/morty_smith.png');
-
-  /// File path: assets/images/rick_sanchez.png
-  AssetGenImage get rickSanchez =>
-      const AssetGenImage('assets/images/rick_sanchez.png');
-
-  /// File path: assets/images/summer_smith.png
-  AssetGenImage get summerSmith =>
-      const AssetGenImage('assets/images/summer_smith.png');
-
   /// File path: assets/images/text_image.png
   AssetGenImage get textImage =>
       const AssetGenImage('assets/images/text_image.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        agencyDirector,
-        alanRiles,
-        albertEinstein,
         anatomicalPark,
         backgroundImage,
         earth,
+        episodeImage,
         homeScreenImage1,
         homeScreenImage2,
         homeScreenImage3,
-        mortySmith,
-        rickSanchez,
-        summerSmith,
         textImage
       ];
 }

@@ -8,5 +8,5 @@ import 'package:rick_and_morty/gen/fonts.gen.dart';
 
 part 'theme/app_text_theme.dart';
 part 'theme/color_theme.dart';
-part 'screens/app_loading_screen.dart';
+part '../screens/app_loading_screen.dart';
 part 'widgets/find_textfield_widget.dart';

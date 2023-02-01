@@ -3,8 +3,11 @@ library episode_part;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:rick_and_morty/parts/episodes/mock_data/mock_data.dart';
+import 'package:rick_and_morty/domain/api_clients/api_client.dart';
+import 'package:rick_and_morty/gen/assets.gen.dart';
+
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 part 'bloc/episodes_bloc.dart';
 part 'bloc/episodes_event.dart';
@@ -19,7 +22,7 @@ class EpisodesPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<EpisodesBloc>(
-      create: (context) => EpisodesBloc()..add(EpisodesOpened()),
+      create: (context) => EpisodesBloc(ApiClient())..add(EpisodesOpened()),
       child: BlocBuilder<EpisodesBloc, EpisodesState>(
         builder: (context, state) {
           if (state is EpisodesLoadFailure) {

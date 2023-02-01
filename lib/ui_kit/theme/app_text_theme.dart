@@ -56,4 +56,10 @@ abstract class AppTextTheme {
     fontSize: 34,
     letterSpacing: 1.75,
   );
+  static const overline = TextStyle(
+    fontFamily: FontFamily.roboto,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    letterSpacing: 1.5,
+  );
 }

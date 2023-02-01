@@ -1,7 +1,8 @@
 part of '../episodes_part.dart';
 
 class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
-  EpisodesBloc() : super(EpisodesInitial()) {
+  final ApiClient apiClient;
+  EpisodesBloc(this.apiClient) : super(EpisodesInitial()) {
     on(_onEpisodesOpened);
     on(_onEpisodesSeasonsSwitched);
     on(_onEpisodesSearched);
@@ -9,7 +10,8 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
 
   Future<void> _onEpisodesOpened(
       EpisodesOpened event, Emitter<EpisodesState> emit) async {
-    emit(EpisodesLoadSuccess(episodes: episodes));
+    final episodeList = await apiClient.fetchEpisodes();
+    emit(EpisodesLoadSuccess(episodes: episodeList));
   }
 
   Future<void> _onEpisodesSeasonsSwitched(
