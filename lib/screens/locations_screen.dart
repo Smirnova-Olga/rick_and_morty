@@ -21,22 +21,35 @@ class LocationsScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
-          child: Row(
-            children: [
-              Text(
-                'ALL LOCATIONS: ${locations.length.toString()}',
-                style: AppTextTheme.subtitle2.copyWith(
-                  color: ColorTheme.white100,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ],
-          ),
+          child: _HeadLineWidget(locationsCount: locations.length),
         ),
         LocationListWidget(
           locations: locations,
         )
       ]),
+    );
+  }
+}
+
+class _HeadLineWidget extends StatelessWidget {
+  final int locationsCount;
+  const _HeadLineWidget({
+    Key? key,
+    required this.locationsCount,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          'ALL LOCATIONS: $locationsCount',
+          style: AppTextTheme.subtitle2.copyWith(
+            color: ColorTheme.white100,
+          ),
+          textAlign: TextAlign.left,
+        ),
+      ],
     );
   }
 }
@@ -69,10 +82,10 @@ class LocationListWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // TODO Image(
-                    //   image: AssetImage(locations[index].image),
-                    //   fit: BoxFit.fitWidth,
-                    // ),
+                    Image(
+                      image: AssetImage(Assets.images.earth.path),
+                      fit: BoxFit.fitWidth,
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 12, 26, 5),
                       child: Text(
@@ -84,8 +97,7 @@ class LocationListWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        '',
-                        // TODO locations[index].description,
+                        '${locations[index].type}, ${locations[index].dimension}',
                         style: AppTextTheme.subtitle4
                             .copyWith(color: ColorTheme.white100),
                       ),
