@@ -89,12 +89,11 @@ class EpisodesListWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 24),
-              child: SizedBox(
-                height: 74,
-                child: Row(
-                  children: [
-                    Image(image: AssetImage(Assets.images.episodeImage.path)),
-                    Padding(
+              child: Row(
+                children: [
+                  Image(image: AssetImage(Assets.images.episodeImage.path)),
+                  Expanded(
+                    child: Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,28 +105,28 @@ class EpisodesListWidget extends StatelessWidget {
                               episodes[index].episode,
                               style: AppTextTheme.overline
                                   .copyWith(color: ColorTheme.blue900),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
-                            child: Text(
-                              episodes[index].name,
-                              style: AppTextTheme.subtitle3.copyWith(
-                                color: ColorTheme.white000,
-                              ),
+                          Text(
+                            episodes[index].name,
+                            style: AppTextTheme.subtitle3.copyWith(
+                              color: ColorTheme.white000,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             episodes[index].airDate,
                             style: AppTextTheme.body2.copyWith(
                               color: ColorTheme.white100,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             );
           },
