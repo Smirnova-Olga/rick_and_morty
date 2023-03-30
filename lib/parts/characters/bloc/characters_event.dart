@@ -6,4 +6,8 @@ class CharactersOpened extends CharactersEvent {}
 
 class CharactersViewSwitched extends CharactersEvent {}
 
-class CharactersSearched extends CharactersEvent {}
+class CharactersSearched extends CharactersEvent {
+  final String searchedText;
+
+  CharactersSearched(this.searchedText);
+}
