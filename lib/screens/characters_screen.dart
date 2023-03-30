@@ -116,40 +116,46 @@ class GridWidget extends StatelessWidget {
           ),
           itemCount: character.length,
           itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                SizedBox(
-                  width: 120,
-                  height: 122,
-                  child: ClipOval(child: Image.network(character[index].image)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    character[index].status.toUpperCase(),
-                    style: AppTextTheme.subtitle2.copyWith(
-                      color: character[index].status == 'Alive'
-                          ? ColorTheme.green
-                          : ColorTheme.red,
+            return Expanded(
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: 120,
+                    height: 122,
+                    child:
+                        ClipOval(child: Image.network(character[index].image)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      character[index].status.toUpperCase(),
+                      style: AppTextTheme.subtitle2.copyWith(
+                        color: character[index].status == 'Alive'
+                            ? ColorTheme.green
+                            : ColorTheme.red,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Text(
-                    character[index].name,
-                    style: AppTextTheme.subtitle5.copyWith(
-                      color: ColorTheme.white000,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      character[index].name,
+                      style: AppTextTheme.subtitle5.copyWith(
+                        color: ColorTheme.white000,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                ),
-                Text(
-                  '${character[index].species}, ${character[index].gender}',
-                  style: AppTextTheme.subtitle4.copyWith(
-                    color: ColorTheme.white100,
+                  Text(
+                    '${character[index].species}, ${character[index].gender}',
+                    style: AppTextTheme.subtitle4.copyWith(
+                      color: ColorTheme.white100,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),
@@ -182,39 +188,44 @@ class ListWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     ClipOval(child: Image.network(character[index].image)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
-                            child: Text(
-                              character[index].status.toUpperCase(),
-                              style: AppTextTheme.subtitle2.copyWith(
-                                color: character[index].status == 'Alive'
-                                    ? ColorTheme.green
-                                    : ColorTheme.red,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 3),
+                              child: Text(
+                                character[index].status.toUpperCase(),
+                                style: AppTextTheme.subtitle2.copyWith(
+                                  color: character[index].status == 'Alive'
+                                      ? ColorTheme.green
+                                      : ColorTheme.red,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 3),
-                            child: Text(
-                              character[index].name,
-                              style: AppTextTheme.subtitle3.copyWith(
-                                color: ColorTheme.white000,
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 3),
+                              child: Text(
+                                character[index].name,
+                                style: AppTextTheme.subtitle3.copyWith(
+                                  color: ColorTheme.white000,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                          ),
-                          Text(
-                            '${character[index].species}, ${character[index].gender}',
-                            style: AppTextTheme.subtitle4.copyWith(
-                              color: ColorTheme.white100,
+                            Text(
+                              '${character[index].species}, ${character[index].gender}',
+                              style: AppTextTheme.subtitle4.copyWith(
+                                color: ColorTheme.white100,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   ],
