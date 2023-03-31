@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rick_and_morty/domain/api_clients/api_client.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
+import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 part 'bloc/locations_bloc.dart';
 part 'bloc/locations_event.dart';

@@ -1,5 +1,5 @@
 {
-"findCharacter": "Encuentra un personaje",
+"findCharacter": "Buscar un personaje",
 
 "allCharactersCount": "TODOS PERSONAJES: {value}",
 "@allCharactersCount": {
@@ -8,6 +8,14 @@
         "value": {}
     }
 },
-"findEpisode": "Buscar episodio"
+"findEpisode": "Buscar episodio",
+"findLocation": "Buscar un ubicacion",
+"allLocationsCount": "TODAS LAS UBICACIONES: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+}
 
 }

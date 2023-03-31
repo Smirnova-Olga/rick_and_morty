@@ -7,6 +7,14 @@
         "value": {}
     }
 },
-"findEpisode": "Find episode"
+"findEpisode": "Find episode",
+"findLocation": "Find location",
+"allLocationsCount": "ALL LOCATIONS: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+}
 
 }
