@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Scaffold(
       backgroundColor: ColorTheme.voilet,
       body: Center(
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.character.path),
-            label: 'Characters',
+            label: locale.characters,
             backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.character.path,
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.location.path),
-            label: 'Locations',
+            label: locale.locations,
             backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.location.path,
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.episode.path),
-            label: 'Episodes',
+            label: locale.episodes,
             backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.episode.path,
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.settings.path),
-            label: 'Settings',
+            label: locale.settings,
             backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.settings.path,
