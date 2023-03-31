@@ -21,6 +21,7 @@ class CharactersScreen extends StatelessWidget {
             const SizedBox(height: 54),
             FindTextFieldWidget(
               hintText: locale.findCharacter,
+              withSuffixIcon: true,
             ),
             _HeadLineWidget(
               isList: isList,
@@ -55,7 +56,6 @@ class _HeadLineWidget extends StatelessWidget {
         children: [
           Text(
             locale.allCharactersCount(charactersCount),
-            //'ALL CHARACTER: $charactersCount',
             style: AppTextTheme.subtitle2.copyWith(
               color: ColorTheme.white100,
             ),
