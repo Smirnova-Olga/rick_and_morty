@@ -83,7 +83,7 @@ class AuthScreen extends StatelessWidget {
                 onPressed: () => _showDialogMessage(context),
               ),
               const SizedBox(height: 20),
-              const NewAccountWidget(),
+              const _NewAccountWidget(),
             ],
           ),
         ),
@@ -107,8 +107,8 @@ class _BackgroundImageWidget extends StatelessWidget {
   }
 }
 
-class NewAccountWidget extends StatelessWidget {
-  const NewAccountWidget({
+class _NewAccountWidget extends StatelessWidget {
+  const _NewAccountWidget({
     Key? key,
   }) : super(key: key);
 
