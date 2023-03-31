@@ -28,7 +28,12 @@
 "create": "Registrarse ahora",
 "createAccount": "Registro",
 "name": "Nombre",
-"surname": "Apellido"
+"surname": "Apellido",
+"settings": "Configuraciones",
+"characters": "Personajes",
+"locations": "Ubicaciones",
+"episodes": "Episodios"
+
 
 
 }

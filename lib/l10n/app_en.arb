@@ -26,7 +26,12 @@
 "create": "Create",
 "createAccount": "Create account",
 "name": "Name",
-"surname": "Surname"
+"surname": "Surname",
+"settings": "Settings",
+"characters": "Characters",
+"locations": "Locations",
+"episodes": "Episodes"
+
 
 
 }
