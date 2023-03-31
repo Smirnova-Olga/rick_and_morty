@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
+import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/text_field_widget.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
@@ -43,7 +44,7 @@ class CreateAccountScreen extends StatelessWidget {
               _CreateAccountTextFieldWidget(
                 hintText: locale.surname,
               ),
-              const _DividerWidget(),
+              const DividerWidget(),
               _HelpTextWidget(text: locale.username),
               const TextFieldWidget(isPassword: false),
               _HelpTextWidget(text: locale.password),
@@ -141,23 +142,5 @@ class _CreateAccountTextFieldWidget extends StatelessWidget {
           hintText: hintText,
           hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
         ));
-  }
-}
-
-class _DividerWidget extends StatelessWidget {
-  const _DividerWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 1.5,
-        color: ColorTheme.grey,
-      ),
-    );
   }
 }
