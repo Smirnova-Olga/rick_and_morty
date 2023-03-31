@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
+import 'package:rick_and_morty/app_global_widgets/text_field_widget.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/screens/auth_screen.dart';
 import 'package:rick_and_morty/parts/home/home_part.dart';
 
 class CreateAccountScreen extends StatelessWidget {
@@ -47,7 +48,19 @@ class CreateAccountScreen extends StatelessWidget {
               const TextFieldWidget(isPassword: false),
               _HelpTextWidget(text: locale.password),
               const TextFieldWidget(isPassword: true),
-              const _ButtonLoginWidget(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 65),
+                child: ButtonWidget(
+                  text: locale.create,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -144,41 +157,6 @@ class _DividerWidget extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 1.5,
         color: ColorTheme.grey,
-      ),
-    );
-  }
-}
-
-class _ButtonLoginWidget extends StatelessWidget {
-  const _ButtonLoginWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    final locale = context.l10n;
-    final style = AppTextTheme.subtitle1.copyWith(color: ColorTheme.white000);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 65),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          minimumSize: const Size.fromHeight(50),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          backgroundColor: ColorTheme.blue900,
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(7.0),
-          child: Text(
-            locale.create,
-            style: style,
-          ),
-        ),
       ),
     );
   }
