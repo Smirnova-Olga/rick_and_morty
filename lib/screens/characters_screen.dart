@@ -11,6 +11,7 @@ class CharactersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Scaffold(
       backgroundColor: ColorTheme.voilet,
       body: Padding(
@@ -18,8 +19,8 @@ class CharactersScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 54),
-            const FindTextFieldWidget(
-              hintText: 'Find character',
+            FindTextFieldWidget(
+              hintText: locale.findCharacter,
             ),
             _HeadLineWidget(
               isList: isList,
@@ -46,13 +47,15 @@ class _HeadLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'ALL CHARACTER: $charactersCount',
+            locale.allCharactersCount(charactersCount),
+            //'ALL CHARACTER: $charactersCount',
             style: AppTextTheme.subtitle2.copyWith(
               color: ColorTheme.white100,
             ),
@@ -79,15 +82,11 @@ class ViewCharacters extends StatelessWidget {
     required this.isList,
   }) : super(key: key);
 
-  final String alive = 'ALIVE';
-
-  final String dead = 'DEAD';
-
   @override
   Widget build(BuildContext context) {
     return isList
         ? ListWidget(character: characters)
-        : GridWidget(character: characters, alive: alive);
+        : GridWidget(character: characters);
   }
 }
 
@@ -95,11 +94,9 @@ class GridWidget extends StatelessWidget {
   const GridWidget({
     Key? key,
     required this.character,
-    required this.alive,
   }) : super(key: key);
 
   final List<Character> character;
-  final String alive;
 
   @override
   Widget build(BuildContext context) {

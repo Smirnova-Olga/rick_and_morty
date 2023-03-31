@@ -1,3 +1,15 @@
 {
-    "helloWorld": "¡Hola Mundo!"
+   "findCharacter": "Encuentra un personaje",
+   
+   "allCharactersCount": "TODOS PERSONAJES: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+},
+
+   "alive": "ALIVE",
+   "dead": "DEAD"
+
 }

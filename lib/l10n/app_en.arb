@@ -1,6 +1,14 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "findCharacter": "Find character",
+  "allCharactersCount": "ALL CHARACTERS: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+},
+
+  "alive": "ALIVE",
+  "dead": "DEAD"
+
 }
