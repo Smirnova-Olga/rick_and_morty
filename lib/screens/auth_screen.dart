@@ -9,6 +9,9 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppTextTheme.body2.copyWith(
+      color: ColorTheme.white000,
+    );
     return SingleChildScrollView(
       child: Container(
         decoration: const BoxDecoration(color: ColorTheme.voilet),
@@ -16,24 +19,24 @@ class AuthScreen extends StatelessWidget {
           padding: const EdgeInsets.all(28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SizedBox(height: 50),
-              _BackgroundImageWidget(),
-              _TextWidget(text: 'Username'),
-              SizedBox(height: 10),
-              TextFieldWidget(
+            children: [
+              const SizedBox(height: 50),
+              const _BackgroundImageWidget(),
+              Text('Username', style: style),
+              const SizedBox(height: 10),
+              const TextFieldWidget(
                 isLoginText: true,
               ),
-              SizedBox(height: 10),
-              _TextWidget(text: 'Password'),
-              SizedBox(height: 10),
-              TextFieldWidget(
+              const SizedBox(height: 10),
+              Text('Password', style: style),
+              const SizedBox(height: 10),
+              const TextFieldWidget(
                 isLoginText: false,
               ),
-              SizedBox(height: 30),
-              _ButtonLoginWidget(),
-              SizedBox(height: 20),
-              NewAccountWidget(),
+              const SizedBox(height: 30),
+              const _ButtonLoginWidget(),
+              const SizedBox(height: 20),
+              const NewAccountWidget(),
             ],
           ),
         ),
@@ -52,24 +55,6 @@ class _BackgroundImageWidget extends StatelessWidget {
     return const Center(
       child: Image(
         image: AssetImage('assets/images/text_image.png'),
-      ),
-    );
-  }
-}
-
-class _TextWidget extends StatelessWidget {
-  final String text;
-  const _TextWidget({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: AppTextTheme.body2.copyWith(
-        color: ColorTheme.white000,
       ),
     );
   }
