@@ -10,6 +10,7 @@ class LocationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Scaffold(
       backgroundColor: ColorTheme.voilet,
       body: Padding(
@@ -18,8 +19,8 @@ class LocationsScreen extends StatelessWidget {
           const SizedBox(
             height: 54,
           ),
-          const FindTextFieldWidget(
-            hintText: 'Find location',
+          FindTextFieldWidget(
+            hintText: locale.findLocation,
           ),
           _HeadLineWidget(locationsCount: locations.length),
           LocationListWidget(
@@ -40,12 +41,13 @@ class _HeadLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Row(
         children: [
           Text(
-            'ALL LOCATIONS: $locationsCount',
+            locale.allLocationsCount(locationsCount),
             style: AppTextTheme.subtitle2.copyWith(
               color: ColorTheme.white100,
             ),

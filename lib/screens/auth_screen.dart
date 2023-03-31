@@ -1,14 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:rick_and_morty/gen/assets.gen.dart';
+import 'package:rick_and_morty/l10n/l10n.dart';
+import 'package:rick_and_morty/screens/create_account_screen.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/parts/auth/create_account_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
+    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white000);
     return SingleChildScrollView(
       child: Container(
         decoration: const BoxDecoration(color: ColorTheme.voilet),
@@ -16,24 +21,26 @@ class AuthScreen extends StatelessWidget {
           padding: const EdgeInsets.all(28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SizedBox(height: 50),
-              _BackgroundImageWidget(),
-              _TextWidget(text: 'Username'),
-              SizedBox(height: 10),
+            children: [
+              const SizedBox(height: 50),
+              const _BackgroundImageWidget(),
+              Text(locale.username, style: style),
+              const SizedBox(height: 10),
               TextFieldWidget(
-                isLoginText: true,
+                isPassword: false,
+                text: locale.username,
               ),
-              SizedBox(height: 10),
-              _TextWidget(text: 'Password'),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
+              Text(locale.password, style: style),
+              const SizedBox(height: 10),
               TextFieldWidget(
-                isLoginText: false,
+                isPassword: true,
+                text: locale.password,
               ),
-              SizedBox(height: 30),
-              _ButtonLoginWidget(),
-              SizedBox(height: 20),
-              NewAccountWidget(),
+              const SizedBox(height: 30),
+              const _ButtonLoginWidget(),
+              const SizedBox(height: 20),
+              const NewAccountWidget(),
             ],
           ),
         ),
@@ -57,30 +64,14 @@ class _BackgroundImageWidget extends StatelessWidget {
   }
 }
 
-class _TextWidget extends StatelessWidget {
-  final String text;
-  const _TextWidget({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: AppTextTheme.body2.copyWith(
-        color: ColorTheme.white000,
-      ),
-    );
-  }
-}
-
 class TextFieldWidget extends StatefulWidget {
-  final bool isLoginText;
+  final bool isPassword;
+  final String? text;
 
   const TextFieldWidget({
     Key? key,
-    required this.isLoginText,
+    required this.isPassword,
+    this.text,
   }) : super(key: key);
 
   @override
@@ -93,12 +84,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   Widget build(BuildContext context) {
     return TextField(
         textAlign: TextAlign.left,
-        obscureText: widget.isLoginText ? false : _isObscure,
+        obscureText: widget.isPassword ? true : false,
         obscuringCharacter: '•',
         style: TextStyle(
           color: ColorTheme.white000,
           fontWeight: FontWeight.w400,
-          letterSpacing: widget.isLoginText ? 1 : 5,
+          letterSpacing: widget.isPassword ? 1 : 5,
         ),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -115,15 +106,15 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           prefixIcon: Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
             child: SvgPicture.asset(
-              widget.isLoginText
+              widget.isPassword
                   ? Assets.icons.userIcon.path
                   : Assets.icons.passwordIcon.path,
               color: ColorTheme.white100,
             ),
           ),
-          hintText: widget.isLoginText ? 'Username' : 'Password',
+          hintText: widget.text,
           hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
-          suffixIcon: widget.isLoginText
+          suffixIcon: widget.isPassword
               ? null
               : IconButton(
                   icon: Icon(
@@ -144,6 +135,8 @@ class _ButtonLoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
+    final style = AppTextTheme.subtitle1.copyWith(color: ColorTheme.white000);
     return TextButton(
       style: TextButton.styleFrom(
         minimumSize: const Size.fromHeight(50),
@@ -156,16 +149,15 @@ class _ButtonLoginWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(7.0),
         child: Text(
-          'Login',
-          style: AppTextTheme.subtitle1.copyWith(
-            color: ColorTheme.white000,
-          ),
+          locale.login,
+          style: style,
         ),
       ),
     );
   }
 
   Future<String?> _showDialogMessage(BuildContext context) {
+    final locale = context.l10n;
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -174,13 +166,13 @@ class _ButtonLoginWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        title: const Text('Error'),
+        title: Text(locale.error),
         titlePadding: const EdgeInsets.all(30),
         titleTextStyle:
             AppTextTheme.headline6.copyWith(color: ColorTheme.white000),
         content: SizedBox(
           width: MediaQuery.of(context).size.width,
-          child: const Text('Incorrect username or password'),
+          child: Text(locale.incorrectData),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 30),
         contentTextStyle:
@@ -194,9 +186,9 @@ class _ButtonLoginWidget extends StatelessWidget {
                 side: const BorderSide(color: ColorTheme.blue900),
               ),
             ),
-            onPressed: () => Navigator.pop(context, 'OK'),
+            onPressed: () => Navigator.pop(context, locale.ok),
             child: Text(
-              'OK',
+              locale.ok,
               style: AppTextTheme.subtitle1.copyWith(color: ColorTheme.blue900),
             ),
           ),
@@ -213,25 +205,27 @@ class NewAccountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
+    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white100);
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Don't have an account yet?",
-          style: AppTextTheme.body2.copyWith(color: ColorTheme.white100),
+          locale.doNotHaveAnAccountYet,
+          style: style,
         ),
         TextButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const CreateAccountWidget()),
+                    builder: (context) => const CreateAccountScreen()),
               );
             },
-            child: const Text(
-              'Create',
-              style: TextStyle(color: ColorTheme.green),
+            child: Text(
+              locale.create,
+              style: style.copyWith(color: ColorTheme.green),
             ))
       ],
     );

@@ -11,6 +11,7 @@ class EpisodesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Scaffold(
       backgroundColor: ColorTheme.voilet,
       body: Padding(
@@ -19,8 +20,8 @@ class EpisodesScreen extends StatelessWidget {
           const SizedBox(
             height: 54,
           ),
-          const _FindTextFieldWidget(
-            hintText: 'Find episode',
+          _FindTextFieldWidget(
+            hintText: locale.findEpisode,
           ),
           const SizedBox(
             height: 5,

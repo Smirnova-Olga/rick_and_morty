@@ -1,0 +1,34 @@
+{
+"findCharacter": "Busca un personaje",
+
+"allCharactersCount": "TODOS PERSONAJES: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+},
+"findEpisode": "Busca episodio",
+"findLocation": "Busca un ubicacion",
+"allLocationsCount": "TODAS LAS UBICACIONES: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+},
+
+"username": "Nombre de usuario",
+"password": "Contraseña",
+"login": "Accede a tu cuenta",
+"error": "Error",
+"incorrectData": "Usuario y/o contraseña no válidos",
+"ok": "Ok",
+"doNotHaveAnAccountYet": "Aún no tienes una cuenta?",
+"create": "Registrarse ahora",
+"createAccount": "Registro",
+"name": "Nombre",
+"surname": "Apellido"
+
+
+}

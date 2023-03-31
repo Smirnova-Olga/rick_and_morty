@@ -1,0 +1,32 @@
+{
+"findCharacter": "Find character",
+"allCharactersCount": "ALL CHARACTERS: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+},
+"findEpisode": "Find episode",
+"findLocation": "Find location",
+"allLocationsCount": "ALL LOCATIONS: {value}",
+"@allCharactersCount": {
+    "type": "text",
+    "placeholders": {
+        "value": {}
+    }
+},
+"username": "Username",
+"password": "Password",
+"login": "Login",
+"error": "Error",
+"incorrectData": "Incorrect username or password",
+"ok": "Ok",
+"doNotHaveAnAccountYet": "Don't have an account yet?",
+"create": "Create",
+"createAccount": "Create account",
+"name": "Name",
+"surname": "Surname"
+
+
+}
