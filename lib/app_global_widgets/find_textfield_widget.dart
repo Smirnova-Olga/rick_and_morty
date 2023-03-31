@@ -1,10 +1,12 @@
-part of '../ui_kit.dart';
+part of '../ui_kit/ui_kit.dart';
 
 class FindTextFieldWidget extends StatelessWidget {
   final String hintText;
+  final bool withSuffixIcon;
   const FindTextFieldWidget({
     Key? key,
     required this.hintText,
+    required this.withSuffixIcon,
   }) : super(key: key);
 
   @override
@@ -34,21 +36,23 @@ class FindTextFieldWidget extends StatelessWidget {
         ),
         hintText: hintText,
         hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
-        suffixIcon: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 24,
-              width: 1,
-              color: ColorTheme.white100,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 12, 15, 12),
-              child: SvgPicture.asset(Assets.icons.filter.path),
-            ),
-          ],
-        ),
+        suffixIcon: withSuffixIcon
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    height: 24,
+                    width: 1,
+                    color: ColorTheme.white100,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 12, 15, 12),
+                    child: SvgPicture.asset(Assets.icons.filter.path),
+                  ),
+                ],
+              )
+            : null,
       ),
     );
   }

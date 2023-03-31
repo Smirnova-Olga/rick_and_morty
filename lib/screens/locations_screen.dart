@@ -21,6 +21,7 @@ class LocationsScreen extends StatelessWidget {
           ),
           FindTextFieldWidget(
             hintText: locale.findLocation,
+            withSuffixIcon: true,
           ),
           _HeadLineWidget(locationsCount: locations.length),
           LocationListWidget(
