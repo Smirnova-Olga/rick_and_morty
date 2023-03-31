@@ -1,15 +1,13 @@
 {
-   "findCharacter": "Encuentra un personaje",
-   
-   "allCharactersCount": "TODOS PERSONAJES: {value}",
+"findCharacter": "Encuentra un personaje",
+
+"allCharactersCount": "TODOS PERSONAJES: {value}",
 "@allCharactersCount": {
     "type": "text",
     "placeholders": {
         "value": {}
     }
 },
-
-   "alive": "ALIVE",
-   "dead": "DEAD"
+"findEpisode": "Buscar episodio"
 
 }

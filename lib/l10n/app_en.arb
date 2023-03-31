@@ -1,14 +1,12 @@
 {
-  "findCharacter": "Find character",
-  "allCharactersCount": "ALL CHARACTERS: {value}",
+"findCharacter": "Find character",
+"allCharactersCount": "ALL CHARACTERS: {value}",
 "@allCharactersCount": {
     "type": "text",
     "placeholders": {
         "value": {}
     }
 },
-
-  "alive": "ALIVE",
-  "dead": "DEAD"
+"findEpisode": "Find episode"
 
 }
