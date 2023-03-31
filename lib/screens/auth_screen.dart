@@ -1,9 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
+import 'package:rick_and_morty/screens/create_account_screen.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/parts/auth/create_account_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -64,12 +66,12 @@ class _BackgroundImageWidget extends StatelessWidget {
 
 class TextFieldWidget extends StatefulWidget {
   final bool isPassword;
-  final String text;
+  final String? text;
 
   const TextFieldWidget({
     Key? key,
     required this.isPassword,
-    required this.text,
+    this.text,
   }) : super(key: key);
 
   @override
@@ -218,7 +220,7 @@ class NewAccountWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const CreateAccountWidget()),
+                    builder: (context) => const CreateAccountScreen()),
               );
             },
             child: Text(

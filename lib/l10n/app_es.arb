@@ -25,7 +25,10 @@
 "incorrectData": "Usuario y/o contraseña no válidos",
 "ok": "Ok",
 "doNotHaveAnAccountYet": "Aún no tienes una cuenta?",
-"create": "Registrarse ahora"
+"create": "Registrarse ahora",
+"createAccount": "Registro",
+"name": "Nombre",
+"surname": "Apellido"
 
 
 }

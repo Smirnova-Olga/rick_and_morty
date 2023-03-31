@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
+import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 import 'package:rick_and_morty/screens/auth_screen.dart';
 import 'package:rick_and_morty/parts/home/home_part.dart';
 
-class CreateAccountWidget extends StatelessWidget {
-  const CreateAccountWidget({super.key});
+class CreateAccountScreen extends StatelessWidget {
+  const CreateAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
+    final style = AppTextTheme.headline7.copyWith(color: ColorTheme.white100);
     return Scaffold(
       appBar: AppBar(
         leading: const _BackButtonWidget(),
@@ -27,24 +30,23 @@ class CreateAccountWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  'Create account',
-                  style: AppTextTheme.headline7
-                      .copyWith(color: ColorTheme.white000),
+                  locale.createAccount,
+                  style: style,
                 ),
               ),
-              const _HelpTextWidget(text: 'Name'),
-              const _CreateAccountTextFieldWidget(
-                hintText: 'Name',
+              _HelpTextWidget(text: locale.name),
+              _CreateAccountTextFieldWidget(
+                hintText: locale.name,
               ),
-              const _HelpTextWidget(text: 'Surname'),
-              const _CreateAccountTextFieldWidget(
-                hintText: 'Surname',
+              _HelpTextWidget(text: locale.surname),
+              _CreateAccountTextFieldWidget(
+                hintText: locale.surname,
               ),
               const _DividerWidget(),
-              const _HelpTextWidget(text: 'Username'),
-              const TextFieldWidget(isPassword: false, text: ''),
-              const _HelpTextWidget(text: 'Password'),
-              const TextFieldWidget(isPassword: true, text: ''),
+              _HelpTextWidget(text: locale.username),
+              const TextFieldWidget(isPassword: false),
+              _HelpTextWidget(text: locale.password),
+              const TextFieldWidget(isPassword: true),
               const _ButtonLoginWidget(),
             ],
           ),
@@ -152,6 +154,8 @@ class _ButtonLoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
+    final style = AppTextTheme.subtitle1.copyWith(color: ColorTheme.white000);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 65),
       child: TextButton(
@@ -171,10 +175,8 @@ class _ButtonLoginWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(7.0),
           child: Text(
-            'Create',
-            style: AppTextTheme.subtitle1.copyWith(
-              color: ColorTheme.white000,
-            ),
+            locale.create,
+            style: style,
           ),
         ),
       ),

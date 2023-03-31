@@ -23,7 +23,10 @@
 "incorrectData": "Incorrect username or password",
 "ok": "Ok",
 "doNotHaveAnAccountYet": "Don't have an account yet?",
-"create": "Create"
+"create": "Create",
+"createAccount": "Create account",
+"name": "Name",
+"surname": "Surname"
 
 
 }
