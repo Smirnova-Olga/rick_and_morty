@@ -15,6 +15,15 @@
     "placeholders": {
         "value": {}
     }
-}
+},
+"username": "Username",
+"password": "Password",
+"login": "Login",
+"error": "Error",
+"incorrectData": "Incorrect username or password",
+"ok": "Ok",
+"doNotHaveAnAccountYet": "Don't have an account yet?",
+"create": "Create"
+
 
 }
