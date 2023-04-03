@@ -30,7 +30,18 @@
 "settings": "Settings",
 "characters": "Characters",
 "locations": "Locations",
-"episodes": "Episodes"
+"episodes": "Episodes",
+"enterValidEmail": "Please enter a valid Email",
+"minimumCharacters": "Minimum 6 characters",
+"unknownError": "Unknown error",
+"passwordMismatch": "Password mismatch",
+"emailIsAlreadyInUse": "This email is already in use, please try again with a different email",
+"emailVerification": "Email Verification",
+"confirmationEmailHasBeenSent": "A confirmation email has been sent to your email",
+"resend": "Resend",
+"cancel": "Cancel",
+"userNotFound": "User not found or password wrong"
+
 
 
 

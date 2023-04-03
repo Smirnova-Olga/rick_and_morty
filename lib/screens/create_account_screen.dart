@@ -43,12 +43,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   Future<void> signUp() async {
     final navigator = Navigator.of(context);
+    final locale = context.l10n;
 
     final isValid = formKey.currentState?.validate();
     if (isValid == null) {
       SnackBarService.showDialogMessage(
         context,
-        'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+        locale.unknownError,
       );
     } else if (!isValid) {
       return;
@@ -57,7 +58,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     if (passwordInputController.text != passwordRepeatInputController.text) {
       SnackBarService.showDialogMessage(
         context,
-        'Пароли должны совпадать',
+        locale.passwordMismatch,
       );
       return;
     }
@@ -73,13 +74,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       if (e.code == 'email-already-in-use') {
         SnackBarService.showDialogMessage(
           context,
-          'Такой Email уже используется, повторите попытку с использованием другого Email',
+          locale.emailIsAlreadyInUse,
         );
         return;
       } else {
         SnackBarService.showDialogMessage(
           context,
-          'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+          locale.unknownError,
         );
       }
     }
@@ -162,11 +163,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   text: locale.create,
                   onPressed: () {
                     signUp();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const HomeScreen()),
-                    // );
                   },
                 ),
               ),

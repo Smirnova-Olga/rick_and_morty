@@ -25,9 +25,6 @@ class MyApp extends StatelessWidget {
           showUnselectedLabels: true,
         ),
       ),
-      // home: const Scaffold(
-      //   body: AuthScreen(),
-      // ),
       routes: {
         '/': (context) => const FirebaseStream(),
         '/home': (context) => const HomeScreen(),
