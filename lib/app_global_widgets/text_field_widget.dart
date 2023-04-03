@@ -1,34 +1,145 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
+import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
-class TextFieldWidget extends StatefulWidget {
-  final bool isPassword;
-  final String? text;
+class EmailFormField extends StatelessWidget {
+  const EmailFormField({
+    super.key,
+    required this.emailTextInputController,
+    required this.locale,
+    required this.style,
+  });
+
+  final TextEditingController emailTextInputController;
+  final AppLocalizations locale;
+  final TextStyle style;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      textAlign: TextAlign.left,
+      keyboardType: TextInputType.emailAddress,
+      autocorrect: false,
+      controller: emailTextInputController,
+      validator: (email) => email != null && !EmailValidator.validate(email)
+          ? 'Введите правильный Email'
+          : null,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide(style: BorderStyle.none),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide(style: BorderStyle.none),
+        ),
+        filled: true,
+        fillColor: ColorTheme.grey,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
+          child: SvgPicture.asset(
+            Assets.icons.userIcon.path,
+            color: ColorTheme.white100,
+          ),
+        ),
+        hintText: locale.username,
+        hintStyle: style.copyWith(color: ColorTheme.white100),
+      ),
+    );
+  }
+}
+
+class PasswordFormField extends StatefulWidget {
+  const PasswordFormField({
+    super.key,
+    required this.passwordTextInputController,
+    required this.locale,
+    required this.style,
+  });
+
+  final TextEditingController passwordTextInputController;
+  final AppLocalizations locale;
+  final TextStyle style;
+
+  @override
+  State<PasswordFormField> createState() => _PasswordFormFieldState();
+}
+
+class _PasswordFormFieldState extends State<PasswordFormField> {
+  bool _isObscure = true;
+
+  void togglePasswordView() {
+    setState(() {
+      _isObscure = !_isObscure;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      textAlign: TextAlign.left,
+      autocorrect: false,
+      controller: widget.passwordTextInputController,
+      obscureText: _isObscure,
+      obscuringCharacter: '•',
+      validator: (value) =>
+          value != null && value.length < 6 ? 'Минимум 6 символов' : null,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide(style: BorderStyle.none),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide(style: BorderStyle.none),
+        ),
+        filled: true,
+        fillColor: ColorTheme.grey,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
+          child: SvgPicture.asset(
+            Assets.icons.passwordIcon.path,
+            color: ColorTheme.white100,
+          ),
+        ),
+        hintText: widget.locale.password,
+        hintStyle: widget.style.copyWith(color: ColorTheme.white100),
+        suffixIcon: IconButton(
+          icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+          color: ColorTheme.white000,
+          onPressed: () {
+            togglePasswordView();
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class TextFieldWidget extends StatelessWidget {
+  final String hintText;
+  final TextEditingController textInputController;
 
   const TextFieldWidget({
     Key? key,
-    required this.isPassword,
-    this.text,
+    required this.hintText,
+    required this.textInputController,
   }) : super(key: key);
 
-  @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
-}
-
-class _TextFieldWidgetState extends State<TextFieldWidget> {
-  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return TextField(
         textAlign: TextAlign.left,
-        obscureText: widget.isPassword ? true : false,
-        obscuringCharacter: '•',
-        style: TextStyle(
+        style: const TextStyle(
           color: ColorTheme.white000,
           fontWeight: FontWeight.w400,
-          letterSpacing: widget.isPassword ? 1 : 5,
+          letterSpacing: 0.5,
         ),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -42,29 +153,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           ),
           filled: true,
           fillColor: ColorTheme.grey,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
-            child: SvgPicture.asset(
-              widget.isPassword
-                  ? Assets.icons.userIcon.path
-                  : Assets.icons.passwordIcon.path,
-              color: ColorTheme.white100,
-            ),
-          ),
-          hintText: widget.text,
+          hintText: hintText,
           hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
-          suffixIcon: widget.isPassword
-              ? null
-              : IconButton(
-                  icon: Icon(
-                      _isObscure ? Icons.visibility : Icons.visibility_off),
-                  color: ColorTheme.white000,
-                  onPressed: () {
-                    setState(() {
-                      _isObscure = !_isObscure;
-                    });
-                  },
-                ),
         ));
   }
 }

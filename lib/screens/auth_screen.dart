@@ -19,23 +19,16 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool _isObscure = true;
-  TextEditingController emailTextInputController = TextEditingController();
-  TextEditingController passwordTextInputController = TextEditingController();
+  TextEditingController emailInputController = TextEditingController();
+  TextEditingController passwordInputController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    emailTextInputController.dispose();
-    passwordTextInputController.dispose();
+    emailInputController.dispose();
+    passwordInputController.dispose();
 
     super.dispose();
-  }
-
-  void togglePasswordView() {
-    setState(() {
-      _isObscure = !_isObscure;
-    });
   }
 
   Future<void> login() async {
@@ -46,8 +39,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailTextInputController.text.trim(),
-        password: passwordTextInputController.text.trim(),
+        email: emailInputController.text.trim(),
+        password: passwordInputController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
       print(e.code);
@@ -129,80 +122,17 @@ class _AuthScreenState extends State<AuthScreen> {
               const _BackgroundImageWidget(),
               Text(locale.username, style: style),
               const SizedBox(height: 10),
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                autocorrect: false,
-                controller: emailTextInputController,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
-                        ? 'Введите правильный Email'
-                        : null,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(style: BorderStyle.none),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(style: BorderStyle.none),
-                  ),
-                  filled: true,
-                  fillColor: ColorTheme.grey,
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
-                    child: SvgPicture.asset(
-                      Assets.icons.userIcon.path,
-                      color: ColorTheme.white100,
-                    ),
-                  ),
-                  hintText: locale.username,
-                  hintStyle: style.copyWith(color: ColorTheme.white100),
-                ),
-              ),
+              EmailFormField(
+                  emailTextInputController: emailInputController,
+                  locale: locale,
+                  style: style),
               const SizedBox(height: 10),
               Text(locale.password, style: style),
               const SizedBox(height: 10),
-              TextFormField(
-                autocorrect: false,
-                controller: passwordTextInputController,
-                obscureText: true,
-                obscuringCharacter: '•',
-                validator: (value) => value != null && value.length < 6
-                    ? 'Минимум 6 символов'
-                    : null,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                  enabledBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(style: BorderStyle.none),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(style: BorderStyle.none),
-                  ),
-                  filled: true,
-                  fillColor: ColorTheme.grey,
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
-                    child: SvgPicture.asset(
-                      Assets.icons.passwordIcon.path,
-                      color: ColorTheme.white100,
-                    ),
-                  ),
-                  hintText: locale.password,
-                  hintStyle: style.copyWith(color: ColorTheme.white100),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        _isObscure ? Icons.visibility : Icons.visibility_off),
-                    color: ColorTheme.white000,
-                    onPressed: () {
-                      togglePasswordView();
-                    },
-                  ),
-                ),
-              ),
+              PasswordFormField(
+                  passwordTextInputController: passwordInputController,
+                  locale: locale,
+                  style: style),
               const SizedBox(height: 30),
               ButtonWidget(
                 text: locale.login,
