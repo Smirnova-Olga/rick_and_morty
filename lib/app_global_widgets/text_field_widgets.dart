@@ -24,7 +24,7 @@ class EmailFormField extends StatelessWidget {
       autocorrect: false,
       controller: emailTextInputController,
       validator: (email) => email != null && !EmailValidator.validate(email)
-          ? 'Введите правильный Email'
+          ? locale.enterValidEmail
           : null,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
@@ -84,8 +84,9 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
       controller: widget.passwordTextInputController,
       obscureText: _isObscure,
       obscuringCharacter: '•',
-      validator: (value) =>
-          value != null && value.length < 6 ? 'Минимум 6 символов' : null,
+      validator: (value) => value != null && value.length < 6
+          ? widget.locale.minimumCharacters
+          : null,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),

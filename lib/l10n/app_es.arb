@@ -32,7 +32,18 @@
 "settings": "Configuraciones",
 "characters": "Personajes",
 "locations": "Ubicaciones",
-"episodes": "Episodios"
+"episodes": "Episodios",
+"enterValidEmail": "Por favor introduzca una dirección de correo electrónico válida",
+"minimumCharacters": "Mínimo 6 caracteres",
+"unknownError": "Error desconocido",
+"passwordMismatch": "Contraseña no coincide",
+"emailIsAlreadyInUse": "Este correo electrónico ya está en uso, inténtalo de nuevo con otro correo electrónico",
+"emailVerification": "verificacion de email",
+"confirmationEmailHasBeenSent": "Se ha enviado un correo electrónico de confirmación a su correo electrónico",
+"resend": "Reenviar",
+"cancel": "Cancelar",
+"userNotFound": "Usuario no encontrado o contraseña incorrecta"
+
 
 
 

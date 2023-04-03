@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Главная страница'),
+        backgroundColor: ColorTheme.voilet,
         actions: [
           IconButton(
             onPressed: () {
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: Icon(
               Icons.person,
-              color: (user == null) ? Colors.white : Colors.yellow,
+              color: (user == null) ? ColorTheme.white000 : ColorTheme.green,
             ),
           ),
         ],
