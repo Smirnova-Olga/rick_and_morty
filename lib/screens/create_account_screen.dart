@@ -1,15 +1,91 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
-import 'package:rick_and_morty/app_global_widgets/text_field_widget.dart';
+import 'package:rick_and_morty/app_global_widgets/text_field_widgets.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
+import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/parts/home/home_part.dart';
 
-class CreateAccountScreen extends StatelessWidget {
+class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
+
+  @override
+  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+}
+
+class _CreateAccountScreenState extends State<CreateAccountScreen> {
+  bool _isObscure = true;
+  TextEditingController nameInputController = TextEditingController();
+  TextEditingController surnameInputController = TextEditingController();
+  TextEditingController emailInputController = TextEditingController();
+  TextEditingController passwordInputController = TextEditingController();
+  TextEditingController passwordRepeatInputController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailInputController.dispose();
+    passwordInputController.dispose();
+    passwordRepeatInputController.dispose();
+
+    super.dispose();
+  }
+
+  void togglePasswordView() {
+    setState(() {
+      _isObscure = !_isObscure;
+    });
+  }
+
+  Future<void> signUp() async {
+    final navigator = Navigator.of(context);
+
+    final isValid = formKey.currentState?.validate();
+    if (isValid == null) {
+      SnackBarService.showDialogMessage(
+        context,
+        'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+      );
+    } else if (!isValid) {
+      return;
+    }
+
+    if (passwordInputController.text != passwordRepeatInputController.text) {
+      SnackBarService.showDialogMessage(
+        context,
+        'Пароли должны совпадать',
+      );
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailInputController.text.trim(),
+        password: passwordInputController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+
+      if (e.code == 'email-already-in-use') {
+        SnackBarService.showDialogMessage(
+          context,
+          'Такой Email уже используется, повторите попытку с использованием другого Email',
+        );
+        return;
+      } else {
+        SnackBarService.showDialogMessage(
+          context,
+          'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+        );
+      }
+    }
+
+    navigator.pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,35 +106,67 @@ class CreateAccountScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   locale.createAccount,
                   style: style,
                 ),
               ),
-              _HelpTextWidget(text: locale.name),
-              _CreateAccountTextFieldWidget(
-                hintText: locale.name,
-              ),
-              _HelpTextWidget(text: locale.surname),
-              _CreateAccountTextFieldWidget(
-                hintText: locale.surname,
-              ),
-              const DividerWidget(),
-              _HelpTextWidget(text: locale.username),
-              const TextFieldWidget(isPassword: false),
-              _HelpTextWidget(text: locale.password),
-              const TextFieldWidget(isPassword: true),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 65),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.name),
+              ),
+              TextFieldWidget(
+                hintText: locale.name,
+                textInputController: nameInputController,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.surname),
+              ),
+              TextFieldWidget(
+                hintText: locale.surname,
+                textInputController: surnameInputController,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: DividerWidget(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.username),
+              ),
+              EmailFormField(
+                emailTextInputController: emailInputController,
+                locale: locale,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.password),
+              ),
+              PasswordFormField(
+                passwordTextInputController: passwordInputController,
+                locale: locale,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.password),
+              ),
+              PasswordFormField(
+                passwordTextInputController: passwordRepeatInputController,
+                locale: locale,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 child: ButtonWidget(
                   text: locale.create,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                    );
+                    signUp();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const HomeScreen()),
+                    // );
                   },
                 ),
               ),
@@ -98,49 +206,11 @@ class _HelpTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Text(
-        text,
-        style: AppTextTheme.body2.copyWith(
-          color: ColorTheme.white000,
-        ),
+    return Text(
+      text,
+      style: AppTextTheme.body2.copyWith(
+        color: ColorTheme.white000,
       ),
     );
-  }
-}
-
-class _CreateAccountTextFieldWidget extends StatelessWidget {
-  final String hintText;
-
-  const _CreateAccountTextFieldWidget({
-    Key? key,
-    required this.hintText,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-        textAlign: TextAlign.left,
-        style: const TextStyle(
-          color: ColorTheme.white000,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.5,
-        ),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-          enabledBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            borderSide: BorderSide(style: BorderStyle.none),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            borderSide: BorderSide(style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: ColorTheme.grey,
-          hintText: hintText,
-          hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
-        ));
   }
 }
