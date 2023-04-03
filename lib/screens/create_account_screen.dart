@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
-import 'package:rick_and_morty/app_global_widgets/text_field_widget.dart';
+import 'package:rick_and_morty/app_global_widgets/text_field_widgets.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
-import 'package:rick_and_morty/parts/home/home_part.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -31,6 +30,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   void dispose() {
     emailInputController.dispose();
     passwordInputController.dispose();
+    passwordRepeatInputController.dispose();
 
     super.dispose();
   }
@@ -44,14 +44,20 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   Future<void> signUp() async {
     final navigator = Navigator.of(context);
 
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) return;
+    final isValid = formKey.currentState?.validate();
+    if (isValid == null) {
+      SnackBarService.showDialogMessage(
+        context,
+        'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
+      );
+    } else if (!isValid) {
+      return;
+    }
 
     if (passwordInputController.text != passwordRepeatInputController.text) {
-      SnackBarService.showSnackBar(
+      SnackBarService.showDialogMessage(
         context,
         'Пароли должны совпадать',
-        true,
       );
       return;
     }
@@ -65,17 +71,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       print(e.code);
 
       if (e.code == 'email-already-in-use') {
-        SnackBarService.showSnackBar(
+        SnackBarService.showDialogMessage(
           context,
           'Такой Email уже используется, повторите попытку с использованием другого Email',
-          true,
         );
         return;
       } else {
-        SnackBarService.showSnackBar(
+        SnackBarService.showDialogMessage(
           context,
           'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
-          true,
         );
       }
     }
@@ -102,47 +106,67 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   locale.createAccount,
                   style: style,
                 ),
               ),
-              _HelpTextWidget(text: locale.name),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.name),
+              ),
               TextFieldWidget(
                 hintText: locale.name,
                 textInputController: nameInputController,
               ),
-              _HelpTextWidget(text: locale.surname),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.surname),
+              ),
               TextFieldWidget(
                 hintText: locale.surname,
                 textInputController: surnameInputController,
               ),
-              const DividerWidget(),
-              _HelpTextWidget(text: locale.username),
-              EmailFormField(
-                  emailTextInputController: emailInputController,
-                  locale: locale,
-                  style: style),
-              _HelpTextWidget(text: locale.password),
-              PasswordFormField(
-                  passwordTextInputController: passwordInputController,
-                  locale: locale,
-                  style: style),
-              PasswordFormField(
-                  passwordTextInputController: passwordRepeatInputController,
-                  locale: locale,
-                  style: style),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: DividerWidget(),
+              ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 65),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.username),
+              ),
+              EmailFormField(
+                emailTextInputController: emailInputController,
+                locale: locale,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.password),
+              ),
+              PasswordFormField(
+                passwordTextInputController: passwordInputController,
+                locale: locale,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: _HelpTextWidget(text: locale.password),
+              ),
+              PasswordFormField(
+                passwordTextInputController: passwordRepeatInputController,
+                locale: locale,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 child: ButtonWidget(
                   text: locale.create,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                    );
+                    signUp();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const HomeScreen()),
+                    // );
                   },
                 ),
               ),
@@ -182,13 +206,10 @@ class _HelpTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Text(
-        text,
-        style: AppTextTheme.body2.copyWith(
-          color: ColorTheme.white000,
-        ),
+    return Text(
+      text,
+      style: AppTextTheme.body2.copyWith(
+        color: ColorTheme.white000,
       ),
     );
   }

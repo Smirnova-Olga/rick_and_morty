@@ -63,12 +63,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     } catch (e) {
       print(e);
       if (mounted) {
-        SnackBarService.showSnackBar(
-          context,
-          '$e',
-          //'Неизвестная ошибка! Попробуйте еще раз или обратитесь в поддержку.',
-          true,
-        );
+        SnackBarService.showDialogMessage(context, 'Упс');
       }
     }
   }

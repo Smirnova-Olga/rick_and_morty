@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/parts/home/home_part.dart';
+import 'package:rick_and_morty/screens/create_account_screen.dart';
+import 'package:rick_and_morty/screens/verify_email_screen.dart';
 import 'package:rick_and_morty/services/firebase_stream.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 import 'package:rick_and_morty/screens/auth_screen.dart';
@@ -27,7 +30,12 @@ class MyApp extends StatelessWidget {
       // ),
       routes: {
         '/': (context) => const FirebaseStream(),
+        '/home': (context) => const HomeScreen(),
+        '/auth': (context) => const AuthScreen(),
+        '/create_account': (context) => const CreateAccountScreen(),
+        '/verify_email': (context) => const VerifyEmailScreen(),
       },
+      initialRoute: '/',
     );
   }
 }

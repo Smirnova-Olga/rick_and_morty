@@ -8,13 +8,10 @@ class DividerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 1.5,
-        color: ColorTheme.grey,
-      ),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 1.5,
+      color: ColorTheme.grey,
     );
   }
 }

@@ -10,17 +10,16 @@ class EmailFormField extends StatelessWidget {
     super.key,
     required this.emailTextInputController,
     required this.locale,
-    required this.style,
   });
 
   final TextEditingController emailTextInputController;
   final AppLocalizations locale;
-  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.left,
+      style: const TextStyle(color: ColorTheme.white000),
       keyboardType: TextInputType.emailAddress,
       autocorrect: false,
       controller: emailTextInputController,
@@ -47,7 +46,7 @@ class EmailFormField extends StatelessWidget {
           ),
         ),
         hintText: locale.username,
-        hintStyle: style.copyWith(color: ColorTheme.white100),
+        hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100),
       ),
     );
   }
@@ -58,12 +57,10 @@ class PasswordFormField extends StatefulWidget {
     super.key,
     required this.passwordTextInputController,
     required this.locale,
-    required this.style,
   });
 
   final TextEditingController passwordTextInputController;
   final AppLocalizations locale;
-  final TextStyle style;
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();
@@ -82,6 +79,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.left,
+      style: const TextStyle(color: ColorTheme.white000),
       autocorrect: false,
       controller: widget.passwordTextInputController,
       obscureText: _isObscure,
@@ -109,7 +107,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
           ),
         ),
         hintText: widget.locale.password,
-        hintStyle: widget.style.copyWith(color: ColorTheme.white100),
+        hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100),
         suffixIcon: IconButton(
           icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
           color: ColorTheme.white000,

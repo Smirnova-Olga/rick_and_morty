@@ -29,7 +29,33 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
+    final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Главная страница'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              if ((user == null)) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AuthScreen()),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CreateAccountScreen()),
+                );
+              }
+            },
+            icon: Icon(
+              Icons.person,
+              color: (user == null) ? Colors.white : Colors.yellow,
+            ),
+          ),
+        ],
+      ),
       resizeToAvoidBottomInset: false,
       backgroundColor: ColorTheme.voilet,
       body: Center(
