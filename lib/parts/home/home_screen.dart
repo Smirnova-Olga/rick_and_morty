@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ColorTheme.voilet,
       body: Center(
         child: _widgetOptions[_selectedTab],
