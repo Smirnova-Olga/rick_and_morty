@@ -94,6 +94,10 @@ class $AssetsImagesGen {
   AssetGenImage get homeScreenImage3 =>
       const AssetGenImage('assets/images/home_screen_image_3.png');
 
+  /// File path: assets/images/morty_smith.png
+  AssetGenImage get mortySmith =>
+      const AssetGenImage('assets/images/morty_smith.png');
+
   /// File path: assets/images/text_image.png
   AssetGenImage get textImage =>
       const AssetGenImage('assets/images/text_image.png');
@@ -107,6 +111,7 @@ class $AssetsImagesGen {
         homeScreenImage1,
         homeScreenImage2,
         homeScreenImage3,
+        mortySmith,
         textImage
       ];
 }
