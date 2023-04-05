@@ -1,4 +1,4 @@
-part of 'home_part.dart';
+part of '../parts/home/home_part.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,9 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const CharactersPart(),
     const LocationsPart(),
     const EpisodesPart(),
-    const Text(
-      'Settings',
-    ),
+    const SettingsScreen(),
   ];
 
   void onSelectTab(int index) {

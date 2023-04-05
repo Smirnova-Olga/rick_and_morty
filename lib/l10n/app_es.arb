@@ -42,7 +42,13 @@
 "confirmationEmailHasBeenSent": "Se ha enviado un correo electrónico de confirmación a su correo electrónico",
 "resend": "Reenviar",
 "cancel": "Cancelar",
-"userNotFound": "Usuario no encontrado o contraseña incorrecta"
+"userNotFound": "Usuario no encontrado o contraseña incorrecta",
+"edit": "Editar",
+"design": "Diseño",
+"darkTheme": "Tema oscuro",
+"lightTheme": "Tema ligero",
+"language": "Idioma"
+
 
 
 

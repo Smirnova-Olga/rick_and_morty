@@ -10,7 +10,7 @@ class SnackBarService {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         actionsPadding: const EdgeInsets.all(30),
-        backgroundColor: ColorTheme.blue700,
+        backgroundColor: ColorTheme.grey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),

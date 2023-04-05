@@ -11,6 +11,7 @@ import 'package:rick_and_morty/parts/episodes/episodes_part.dart';
 import 'package:rick_and_morty/parts/locations/locations_part.dart';
 import 'package:rick_and_morty/screens/auth_screen.dart';
 import 'package:rick_and_morty/screens/create_account_screen.dart';
+import 'package:rick_and_morty/screens/settings_screen.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
-part 'home_screen.dart';
+part '../../screens/home_screen.dart';

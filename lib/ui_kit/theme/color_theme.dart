@@ -7,6 +7,5 @@ abstract class ColorTheme {
   static const white000 = Color(0xFFFFFFFF);
   static const blue900 = Color(0xFF22A2BD);
   static const green = Color(0xFF43D049);
-  static const blue700 = Color(0xFF152A3A);
   static const red = Color(0xFFEB5757);
 }

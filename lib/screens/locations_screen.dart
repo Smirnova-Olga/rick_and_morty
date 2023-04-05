@@ -79,7 +79,7 @@ class LocationListWidget extends StatelessWidget {
                 height: 218,
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
-                  color: ColorTheme.blue700,
+                  color: ColorTheme.grey,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
