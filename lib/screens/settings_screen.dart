@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
+import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.l10n;
     return Scaffold(
       backgroundColor: ColorTheme.voilet,
       body: SingleChildScrollView(
@@ -53,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: ButtonWidget(
                   onPressed: () {},
-                  text: 'Редактировать',
+                  text: locale.edit,
                 ),
               ),
               const Padding(
@@ -61,13 +63,13 @@ class SettingsScreen extends StatelessWidget {
                 child: DividerWidget(),
               ),
               _RowWithButton(
-                rowTitle: 'Внешний вид',
+                rowTitle: locale.design,
                 icon: const Icon(
                   Icons.palette_outlined,
                   color: ColorTheme.white000,
                   size: 35,
                 ),
-                title: 'Темная тема',
+                title: locale.darkTheme,
                 onPressed: () {},
               ),
               const Padding(
@@ -75,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                 child: DividerWidget(),
               ),
               _RowWithButton(
-                rowTitle: 'Язык',
+                rowTitle: locale.language,
                 icon: const Icon(
                   Icons.language,
                   color: ColorTheme.white000,

@@ -40,7 +40,13 @@
 "confirmationEmailHasBeenSent": "A confirmation email has been sent to your email",
 "resend": "Resend",
 "cancel": "Cancel",
-"userNotFound": "User not found or password wrong"
+"userNotFound": "User not found or password wrong",
+"edit": "Edit",
+"design": "Design",
+"darkTheme": "Dark theme",
+"lightTheme": "Light theme",
+"language": "Language"
+
 
 
 
