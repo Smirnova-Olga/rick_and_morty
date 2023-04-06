@@ -90,7 +90,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           const SizedBox(height: 30),
                           ButtonWidget(
                             text: locale.login,
-                            onPressed:
+                            onPressed: () =>
                                 _authenticateWithEmailAndPassword(context),
                           ),
                           const SizedBox(height: 20),
@@ -110,18 +110,20 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   _authenticateWithEmailAndPassword(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
+    final isValid = _formKey.currentState?.validate();
+    if (isValid == null) {
+      SnackBarService.showDialogMessage(
+        context,
+        'locale.unknownError',
+      );
+    } else if (!isValid) {
+      return;
+    } else if (isValid) {
       BlocProvider.of<AuthBloc>(context).add(
         SignInRequested(
             _emailInputController.text, _passwordInputController.text),
       );
     }
-  }
-
-  void _authenticateWithGoogle(context) {
-    BlocProvider.of<AuthBloc>(context).add(
-      GoogleSignInRequested(),
-    );
   }
 }
 

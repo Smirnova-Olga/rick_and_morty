@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/parts/home/home_part.dart';
-import 'package:rick_and_morty/screens/verify_email_screen.dart';
+import 'package:rick_and_morty/screens/auth_screen.dart';
 
 class FirebaseStream extends StatelessWidget {
   const FirebaseStream({super.key});
@@ -15,10 +15,7 @@ class FirebaseStream extends StatelessWidget {
           return const Scaffold(
               body: Center(child: Text('Что-то пошло не так!')));
         } else if (snapshot.hasData) {
-          if (!snapshot.data!.emailVerified) {
-            return const VerifyEmailScreen();
-          }
-          return const HomeScreen();
+          return const AuthScreen();
         } else {
           return const HomeScreen();
         }

@@ -1,14 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
+import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
@@ -90,11 +99,34 @@ class SettingsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 16),
                 child: DividerWidget(),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: ButtonWidget(
+                  onPressed: () => _logout(context),
+                  text: 'logout',
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  _logout(BuildContext context) async {
+    final isValid = _formKey.currentState?.validate();
+    if (isValid == null) {
+      SnackBarService.showDialogMessage(
+        context,
+        'locale.unknownError',
+      );
+    } else if (!isValid) {
+      return;
+    } else if (isValid) {
+      BlocProvider.of<AuthBloc>(context).add(
+        SignOutRequested(),
+      );
+    }
   }
 }
 
