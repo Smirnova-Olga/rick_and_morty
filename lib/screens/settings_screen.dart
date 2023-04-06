@@ -26,87 +26,99 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 80,
-                    height: 80,
-                    child: ClipOval(
-                      child: Image.asset('assets/images/morty_smith.png'),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: ClipOval(
+                        child: Image.asset('assets/images/morty_smith.png'),
+                      ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Oleg Belotserkovsky',
+                            style: AppTextTheme.subtitle1
+                                .copyWith(color: ColorTheme.white000),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Rick',
+                            style: AppTextTheme.subtitle1
+                                .copyWith(color: ColorTheme.white100),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: ButtonWidget(
+                    onPressed: () {},
+                    text: locale.edit,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Oleg Belotserkovsky',
-                          style: AppTextTheme.subtitle1
-                              .copyWith(color: ColorTheme.white000),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Rick',
-                          style: AppTextTheme.subtitle1
-                              .copyWith(color: ColorTheme.white100),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: ButtonWidget(
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: DividerWidget(),
+                ),
+                _RowWithButton(
+                  rowTitle: locale.design,
+                  icon: const Icon(
+                    Icons.palette_outlined,
+                    color: ColorTheme.white000,
+                    size: 35,
+                  ),
+                  title: locale.darkTheme,
                   onPressed: () {},
-                  text: locale.edit,
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: DividerWidget(),
-              ),
-              _RowWithButton(
-                rowTitle: locale.design,
-                icon: const Icon(
-                  Icons.palette_outlined,
-                  color: ColorTheme.white000,
-                  size: 35,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: DividerWidget(),
                 ),
-                title: locale.darkTheme,
-                onPressed: () {},
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: DividerWidget(),
-              ),
-              _RowWithButton(
-                rowTitle: locale.language,
-                icon: const Icon(
-                  Icons.language,
-                  color: ColorTheme.white000,
-                  size: 35,
+                _RowWithButton(
+                  rowTitle: locale.language,
+                  icon: const Icon(
+                    Icons.language,
+                    color: ColorTheme.white000,
+                    size: 35,
+                  ),
+                  title: 'Español',
+                  onPressed: () {},
                 ),
-                title: 'Español',
-                onPressed: () {},
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                child: DividerWidget(),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: ButtonWidget(
-                  onPressed: () => _logout(context),
-                  text: 'logout',
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: DividerWidget(),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: ButtonWidget(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _logout(context);
+                      } else {
+                        SnackBarService.showDialogMessage(
+                          context,
+                          locale.unknownError,
+                        );
+                      }
+                    },
+                    text: 'logout',
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -114,19 +126,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   _logout(BuildContext context) async {
-    final isValid = _formKey.currentState?.validate();
-    if (isValid == null) {
-      SnackBarService.showDialogMessage(
-        context,
-        'locale.unknownError',
-      );
-    } else if (!isValid) {
-      return;
-    } else if (isValid) {
-      BlocProvider.of<AuthBloc>(context).add(
-        SignOutRequested(),
-      );
-    }
+    BlocProvider.of<AuthBloc>(context).add(
+      SignOutRequested(),
+    );
   }
 }
 

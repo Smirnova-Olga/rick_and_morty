@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,6 +7,7 @@ import 'package:rick_and_morty/app_global_widgets/text_field_widgets.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/parts/home/home_part.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
@@ -167,7 +167,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               ),
             );
           }
-          return Container();
+          return const HomeScreen();
         },
       ),
     );
