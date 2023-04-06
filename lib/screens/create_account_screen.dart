@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,6 +7,7 @@ import 'package:rick_and_morty/app_global_widgets/text_field_widgets.dart';
 import 'package:rick_and_morty/gen/assets.gen.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/parts/home/home_part.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
@@ -78,107 +78,107 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           }
           if (state is UnAuthenticated) {
             // Displaying the sign up form if the user is not authenticated
-            return Container(
-              decoration: const BoxDecoration(color: ColorTheme.voilet),
-              child: Padding(
-                padding: const EdgeInsets.all(28.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        locale.createAccount,
-                        style: style,
+            return Form(
+              key: _formKey,
+              child: Container(
+                decoration: const BoxDecoration(color: ColorTheme.voilet),
+                child: Padding(
+                  padding: const EdgeInsets.all(28.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(
+                          locale.createAccount,
+                          style: style,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: _HelpTextWidget(text: locale.name),
-                    ),
-                    TextFieldWidget(
-                      hintText: locale.name,
-                      textInputController: _nameInputController,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: _HelpTextWidget(text: locale.surname),
-                    ),
-                    TextFieldWidget(
-                      hintText: locale.surname,
-                      textInputController: _surnameInputController,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: DividerWidget(),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: _HelpTextWidget(text: locale.username),
-                    ),
-                    EmailFormField(
-                      emailTextInputController: _emailInputController,
-                      locale: locale,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: _HelpTextWidget(text: locale.password),
-                    ),
-                    PasswordFormField(
-                      passwordTextInputController: _passwordInputController,
-                      locale: locale,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: _HelpTextWidget(text: locale.password),
-                    ),
-                    PasswordFormField(
-                      passwordTextInputController:
-                          _passwordRepeatInputController,
-                      locale: locale,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: ButtonWidget(
-                        text: locale.create,
-                        onPressed: () {
-                          if (_passwordInputController.text !=
-                              _passwordRepeatInputController.text) {
-                            SnackBarService.showDialogMessage(
-                              context,
-                              locale.passwordMismatch,
-                            );
-                          } else {
-                            _createAccountWithEmailAndPassword(context);
-                          }
-                        },
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _HelpTextWidget(text: locale.name),
                       ),
-                    ),
-                  ],
+                      TextFieldWidget(
+                        hintText: locale.name,
+                        textInputController: _nameInputController,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _HelpTextWidget(text: locale.surname),
+                      ),
+                      TextFieldWidget(
+                        hintText: locale.surname,
+                        textInputController: _surnameInputController,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: DividerWidget(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _HelpTextWidget(text: locale.username),
+                      ),
+                      EmailFormField(
+                        emailTextInputController: _emailInputController,
+                        locale: locale,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _HelpTextWidget(text: locale.password),
+                      ),
+                      PasswordFormField(
+                        passwordTextInputController: _passwordInputController,
+                        locale: locale,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: _HelpTextWidget(text: locale.password),
+                      ),
+                      PasswordFormField(
+                        passwordTextInputController:
+                            _passwordRepeatInputController,
+                        locale: locale,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: ButtonWidget(
+                          text: locale.create,
+                          onPressed: () {
+                            if (_passwordInputController.text !=
+                                _passwordRepeatInputController.text) {
+                              SnackBarService.showDialogMessage(
+                                context,
+                                locale.passwordMismatch,
+                              );
+                            } else if (_formKey.currentState!.validate()) {
+                              _createAccountWithEmailAndPassword(context);
+                            } else {
+                              SnackBarService.showDialogMessage(
+                                context,
+                                locale.unknownError,
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
           }
-          return Container();
+          return const HomeScreen();
         },
       ),
     );
   }
 
   _createAccountWithEmailAndPassword(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
-      BlocProvider.of<AuthBloc>(context).add(
-        SignUpRequested(
-          _emailInputController.text,
-          _passwordInputController.text,
-        ),
-      );
-    }
-  }
-
-  void _authenticateWithGoogle(context) {
-    BlocProvider.of<AuthBloc>(context).add(
-      GoogleSignInRequested(),
+    return BlocProvider.of<AuthBloc>(context).add(
+      SignUpRequested(
+        _emailInputController.text,
+        _passwordInputController.text,
+      ),
     );
   }
 }

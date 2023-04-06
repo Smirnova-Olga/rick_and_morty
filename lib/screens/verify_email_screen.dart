@@ -7,7 +7,7 @@ import 'package:rick_and_morty/parts/home/home_part.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({Key? key}) : super(key: key);
 
   @override
   State<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
@@ -23,10 +23,8 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     super.initState();
 
     isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
-
     if (!isEmailVerified) {
       sendVerificationEmail();
-
       timer = Timer.periodic(
         const Duration(seconds: 3),
         (_) => checkEmailVerified(),
@@ -41,15 +39,18 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   }
 
   Future<void> checkEmailVerified() async {
-    await FirebaseAuth.instance.currentUser!.reload();
+    await FirebaseAuth.instance.currentUser?.reload();
 
     setState(() {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
 
-    print(isEmailVerified);
+    if (isEmailVerified) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Email Successfully Verified")));
 
-    if (isEmailVerified) timer?.cancel();
+      timer?.cancel();
+    }
   }
 
   Future<void> sendVerificationEmail() async {
@@ -94,7 +95,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton.icon(
-                      onPressed: canResendEmail ? sendVerificationEmail : null,
+                      onPressed: () {},
                       icon: const Icon(Icons.email),
                       label: Text(locale.resend),
                     ),

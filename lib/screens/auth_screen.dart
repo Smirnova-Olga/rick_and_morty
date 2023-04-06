@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/text_field_widgets.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/parts/home/home_part.dart';
 import 'package:rick_and_morty/screens/create_account_screen.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
@@ -64,45 +64,56 @@ class _AuthScreenState extends State<AuthScreen> {
               // Showing the sign in form if the user is not authenticated
               return Material(
                 child: SingleChildScrollView(
-                  child: Container(
-                    decoration: const BoxDecoration(color: ColorTheme.voilet),
-                    child: Padding(
-                      padding: const EdgeInsets.all(28.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 50),
-                          const _BackgroundImageWidget(),
-                          Text(locale.username, style: style),
-                          const SizedBox(height: 10),
-                          EmailFormField(
-                            emailTextInputController: _emailInputController,
-                            locale: locale,
-                          ),
-                          const SizedBox(height: 10),
-                          Text(locale.password, style: style),
-                          const SizedBox(height: 10),
-                          PasswordFormField(
-                            passwordTextInputController:
-                                _passwordInputController,
-                            locale: locale,
-                          ),
-                          const SizedBox(height: 30),
-                          ButtonWidget(
-                            text: locale.login,
-                            onPressed:
-                                _authenticateWithEmailAndPassword(context),
-                          ),
-                          const SizedBox(height: 20),
-                          const _NewAccountWidget(),
-                        ],
+                  child: Form(
+                    key: _formKey,
+                    child: Container(
+                      decoration: const BoxDecoration(color: ColorTheme.voilet),
+                      child: Padding(
+                        padding: const EdgeInsets.all(28.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 50),
+                            const _BackgroundImageWidget(),
+                            Text(locale.username, style: style),
+                            const SizedBox(height: 10),
+                            EmailFormField(
+                              emailTextInputController: _emailInputController,
+                              locale: locale,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(locale.password, style: style),
+                            const SizedBox(height: 10),
+                            PasswordFormField(
+                              passwordTextInputController:
+                                  _passwordInputController,
+                              locale: locale,
+                            ),
+                            const SizedBox(height: 30),
+                            ButtonWidget(
+                              text: locale.login,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  _authenticateWithEmailAndPassword(context);
+                                } else {
+                                  SnackBarService.showDialogMessage(
+                                    context,
+                                    locale.unknownError,
+                                  );
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                            const _NewAccountWidget(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               );
             }
-            return Container();
+            return const HomeScreen();
           },
         ),
       ),
@@ -110,17 +121,9 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   _authenticateWithEmailAndPassword(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      BlocProvider.of<AuthBloc>(context).add(
-        SignInRequested(
-            _emailInputController.text, _passwordInputController.text),
-      );
-    }
-  }
-
-  void _authenticateWithGoogle(context) {
     BlocProvider.of<AuthBloc>(context).add(
-      GoogleSignInRequested(),
+      SignInRequested(
+          _emailInputController.text, _passwordInputController.text),
     );
   }
 }
