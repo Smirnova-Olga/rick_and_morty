@@ -6,6 +6,7 @@ import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/screens/auth_screen.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
@@ -116,6 +117,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           locale.unknownError,
                         );
                       }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AuthScreen()),
+                      );
                     },
                     text: 'logout',
                   ),
