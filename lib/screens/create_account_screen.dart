@@ -49,12 +49,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     final locale = context.l10n;
     final style = AppTextTheme.headline7.copyWith(color: ColorTheme.white100);
     return Scaffold(
-      appBar: AppBar(
-        leading: const _BackButtonWidget(),
-        leadingWidth: 90,
-        backgroundColor: ColorTheme.voilet,
-        elevation: 0,
-      ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
@@ -178,25 +172,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       SignUpRequested(
         _emailInputController.text,
         _passwordInputController.text,
-      ),
-    );
-  }
-}
-
-class _BackButtonWidget extends StatelessWidget {
-  const _BackButtonWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 36,
-      height: 36,
-      child: IconButton(
-        onPressed: () => Navigator.pop(context),
-        icon: SvgPicture.asset(
-          Assets.icons.back.path,
-          color: ColorTheme.white000,
-        ),
       ),
     );
   }

@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
             bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              backgroundColor: ColorTheme.grey,
               elevation: 0,
               selectedItemColor: ColorTheme.green,
               unselectedItemColor: ColorTheme.white100,
@@ -31,14 +32,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
           home: const FirebaseStream(),
-          // routes: {
-          //   '/': (context) => const FirebaseStream(),
-          //   '/home': (context) => const HomeScreen(),
-          //   '/auth': (context) => const AuthScreen(),
-          //   '/create_account': (context) => const CreateAccountScreen(),
-          //   '/verify_email': (context) => const VerifyEmailScreen(),
-          // },
-          // initialRoute: '/',
         ),
       ),
     );

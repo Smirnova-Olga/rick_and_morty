@@ -22,6 +22,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorTheme.voilet,
+      ),
       backgroundColor: ColorTheme.voilet,
       body: SingleChildScrollView(
         child: Padding(

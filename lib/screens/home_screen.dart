@@ -14,7 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
     const CharactersPart(),
     const LocationsPart(),
     const EpisodesPart(),
-    const SettingsScreen(),
   ];
 
   void onSelectTab(int index) {
@@ -34,27 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              if ((user == null)) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AuthScreen()),
-                );
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CreateAccountScreen()),
-                );
-              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
             },
-            icon: Icon(
-              Icons.person,
-              color: (user == null) ? ColorTheme.white000 : ColorTheme.green,
-            ),
+            icon: SvgPicture.asset(Assets.icons.settings.path),
           ),
         ],
       ),
-      resizeToAvoidBottomInset: false,
       backgroundColor: ColorTheme.voilet,
       body: Center(
         child: _widgetOptions[_selectedTab],
@@ -65,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.character.path),
             label: locale.characters,
-            backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.character.path,
               color: ColorTheme.green,
@@ -74,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.location.path),
             label: locale.locations,
-            backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.location.path,
               color: ColorTheme.green,
@@ -83,18 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(Assets.icons.episode.path),
             label: locale.episodes,
-            backgroundColor: ColorTheme.grey,
             activeIcon: SvgPicture.asset(
               Assets.icons.episode.path,
-              color: ColorTheme.green,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.icons.settings.path),
-            label: locale.settings,
-            backgroundColor: ColorTheme.grey,
-            activeIcon: SvgPicture.asset(
-              Assets.icons.settings.path,
               color: ColorTheme.green,
             ),
           ),
