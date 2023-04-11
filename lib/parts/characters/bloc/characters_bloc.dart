@@ -23,5 +23,5 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   }
 
   Future<void> _onCharactersSearched(
-      CharactersSearched event, Emitter<CharactersState> emit) async {}
+      SearchEventLoadData event, Emitter<CharactersState> emit) async {}
 }
