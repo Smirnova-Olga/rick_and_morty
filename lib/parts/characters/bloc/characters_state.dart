@@ -27,17 +27,14 @@ class CharactersLoadSuccess extends CharactersState {
 
 class CharactersLoadFailure extends CharactersState {}
 
-class SearchStateNotLoaded extends CharactersState {}
+class SearchInitial extends CharactersState {}
 
-class SearchStateLoading extends CharactersState {}
+class SearchLoading extends CharactersState {}
 
-class SearchStateLoaded extends CharactersState {
-  final List<Character> characters;
-  final List<Character> searchedCharacters;
-  SearchStateLoaded(this.characters, this.searchedCharacters);
+class SearchSuccess extends CharactersState {
+  final List<String> characters;
+
+  SearchSuccess(this.characters);
 }
 
-class SearchStateError extends CharactersState {
-  final String message;
-  SearchStateError(this.message);
-}
+class SearchFailure extends CharactersState {}
