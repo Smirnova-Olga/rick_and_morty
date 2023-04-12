@@ -1,6 +1,6 @@
 part of '../parts/characters/characters_part.dart';
 
-class CharactersScreen extends StatelessWidget {
+class CharactersScreen extends StatefulWidget {
   final List<Character> characters;
   final bool isList;
   const CharactersScreen({
@@ -9,6 +9,12 @@ class CharactersScreen extends StatelessWidget {
     required this.isList,
   }) : super(key: key);
 
+  @override
+  State<CharactersScreen> createState() => _CharactersScreenState();
+}
+
+class _CharactersScreenState extends State<CharactersScreen> {
+  final _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
@@ -21,15 +27,26 @@ class CharactersScreen extends StatelessWidget {
             FindTextFieldWidget(
               hintText: locale.findCharacter,
               withSuffixIcon: true,
+              controller: _searchController,
+              onPressed: () {
+                final query = _searchController.text.trim();
+                if (query.isNotEmpty) {
+                  context
+                      .read<CharactersBloc>()
+                      .add(SearchCharacterByName(query));
+                } else if (query.isEmpty) {
+                  Container();
+                }
+              },
             ),
             _HeadLineWidget(
-              isList: isList,
-              charactersCount: characters.length,
+              isList: widget.isList,
+              charactersCount: widget.characters.length,
             ),
             Expanded(
               child: ViewCharacters(
-                characters: characters,
-                isList: isList,
+                characters: widget.characters,
+                isList: widget.isList,
               ),
             ),
           ],

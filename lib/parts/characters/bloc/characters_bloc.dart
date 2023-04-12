@@ -30,9 +30,10 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
 
       if (event.name.isNotEmpty) {
         searchedCharacters = currentState.characters
-            .where((character) => character.name.contains(event.name))
+            .where((character) =>
+                character.name.toLowerCase().contains(event.name.toLowerCase()))
             .toList();
-      } else {
+      } else if (event.name.isEmpty) {
         searchedCharacters = List.from(currentState.characters);
       }
 

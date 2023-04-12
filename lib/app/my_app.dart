@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/parts/auth/auth_repository.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/parts/home/home_part.dart';
 import 'package:rick_and_morty/services/firebase_stream.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
               showUnselectedLabels: true,
             ),
           ),
-          home: const FirebaseStream(),
+          home: const HomeScreen(),
+          // home: const FirebaseStream(),
         ),
       ),
     );
