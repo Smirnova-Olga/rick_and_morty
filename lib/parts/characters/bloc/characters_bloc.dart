@@ -6,6 +6,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     on(_onCharactersOpened);
     on(_onCharactersViewSwitched);
     on(_onCharactersSearched);
+    on(_onCharactersNameChanged);
   }
 
   Future<void> _onCharactersOpened(
@@ -26,19 +27,29 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       SearchCharacterByName event, Emitter<CharactersState> emit) async {
     if (state is CharactersLoadSuccess) {
       final currentState = state as CharactersLoadSuccess;
-      List<Character> searchedCharacters = [];
+      // List<Character> searchedCharacters = [];
 
       if (event.name.isNotEmpty) {
-        searchedCharacters = currentState.characters
+        final searchedCharacters = currentState.characters
             .where((character) =>
                 character.name.toLowerCase().contains(event.name.toLowerCase()))
             .toList();
-      } else if (event.name.isEmpty) {
-        searchedCharacters = List.from(currentState.characters);
+        emit(currentState.copyWith(
+          characters: searchedCharacters,
+          isList: currentState.isList,
+        ));
+      } else {
+        // Если строка поиска пустая, то отобразить всех персонажей
+        emit(currentState.copyWith(
+          characters: List.from(currentState.characters),
+          isList: currentState.isList,
+        ));
       }
-
-      emit(CharactersLoadSuccess(
-          characters: searchedCharacters, isList: currentState.isList));
     }
+  }
+
+  Stream<CharactersState> _onCharactersNameChanged(
+      CharactersNameChanged event, Emitter<CharactersState> emit) async* {
+    add(SearchCharacterByName(event.name));
   }
 }

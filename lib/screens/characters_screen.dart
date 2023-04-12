@@ -15,6 +15,15 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> {
   final _searchController = TextEditingController();
+  final _searchStreamController = StreamController<String>.broadcast();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _searchStreamController.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
@@ -29,13 +38,12 @@ class _CharactersScreenState extends State<CharactersScreen> {
               withSuffixIcon: true,
               controller: _searchController,
               onPressed: () {
-                final query = _searchController.text.trim();
-                if (query.isNotEmpty) {
+                final name = _searchController.text;
+                if (name.isNotEmpty) {
                   context
                       .read<CharactersBloc>()
-                      .add(SearchCharacterByName(query));
-                } else if (query.isEmpty) {
-                  Container();
+                      .add(SearchCharacterByName(name));
+                  _searchStreamController.sink.add(name);
                 }
               },
             ),
