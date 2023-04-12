@@ -3,15 +3,20 @@ part of '../ui_kit/ui_kit.dart';
 class FindTextFieldWidget extends StatelessWidget {
   final String hintText;
   final bool withSuffixIcon;
+  final TextEditingController controller;
+  final void Function()? onPressed;
   const FindTextFieldWidget({
     Key? key,
     required this.hintText,
     required this.withSuffixIcon,
+    required this.controller,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       textAlign: TextAlign.left,
       style: const TextStyle(
         color: ColorTheme.white000,
@@ -32,7 +37,11 @@ class FindTextFieldWidget extends StatelessWidget {
         fillColor: ColorTheme.grey,
         prefixIcon: Padding(
           padding: const EdgeInsets.fromLTRB(15, 12, 10, 12),
-          child: SvgPicture.asset(Assets.icons.search.path),
+          child: IconButton(
+            splashColor: ColorTheme.green,
+            icon: SvgPicture.asset(Assets.icons.search.path),
+            onPressed: onPressed,
+          ),
         ),
         hintText: hintText,
         hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
