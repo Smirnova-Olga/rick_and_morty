@@ -23,5 +23,21 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   }
 
   Future<void> _onCharactersSearched(
-      SearchEventLoadData event, Emitter<CharactersState> emit) async {}
+      SearchCharacterByName event, Emitter<CharactersState> emit) async {
+    if (state is CharactersLoadSuccess) {
+      final currentState = state as CharactersLoadSuccess;
+      List<Character> searchedCharacters = [];
+
+      if (event.name.isNotEmpty) {
+        searchedCharacters = currentState.characters
+            .where((character) => character.name.contains(event.name))
+            .toList();
+      } else {
+        searchedCharacters = List.from(currentState.characters);
+      }
+
+      emit(CharactersLoadSuccess(
+          characters: searchedCharacters, isList: currentState.isList));
+    }
+  }
 }

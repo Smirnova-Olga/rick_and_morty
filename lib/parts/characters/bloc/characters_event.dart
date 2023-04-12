@@ -7,11 +7,8 @@ class CharactersOpened extends CharactersEvent {}
 
 class CharactersViewSwitched extends CharactersEvent {}
 
-class SearchEventLoadData extends CharactersEvent {
-  final List<Character> characters;
-  final List<Character> searchedCharacters;
-  SearchEventLoadData(
-      {required this.characters, required this.searchedCharacters});
-}
+class SearchCharacterByName extends CharactersEvent {
+  final String name;
 
-class SearchEventPopSearch extends CharactersEvent {}
+  SearchCharacterByName(this.name);
+}
