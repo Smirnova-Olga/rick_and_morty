@@ -1,6 +1,6 @@
 part of '../parts/characters/characters_part.dart';
 
-class CharactersScreen extends StatefulWidget {
+class CharactersScreen extends StatelessWidget {
   final List<Character> characters;
   final bool isList;
   const CharactersScreen({
@@ -8,21 +8,6 @@ class CharactersScreen extends StatefulWidget {
     required this.characters,
     required this.isList,
   }) : super(key: key);
-
-  @override
-  State<CharactersScreen> createState() => _CharactersScreenState();
-}
-
-class _CharactersScreenState extends State<CharactersScreen> {
-  final _searchController = TextEditingController();
-  final _searchStreamController = StreamController<String>.broadcast();
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    _searchStreamController.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,25 +21,20 @@ class _CharactersScreenState extends State<CharactersScreen> {
             FindTextFieldWidget(
               hintText: locale.findCharacter,
               withSuffixIcon: true,
-              controller: _searchController,
-              onPressed: () {
-                final name = _searchController.text;
-                if (name.isNotEmpty) {
-                  context
-                      .read<CharactersBloc>()
-                      .add(SearchCharacterByName(name));
-                  _searchStreamController.sink.add(name);
-                }
+              onSearched: (value) {
+                context
+                    .read<CharactersBloc>()
+                    .add(SearchCharacterByName(value));
               },
             ),
             _HeadLineWidget(
-              isList: widget.isList,
-              charactersCount: widget.characters.length,
+              isList: isList,
+              charactersCount: characters.length,
             ),
             Expanded(
               child: ViewCharacters(
-                characters: widget.characters,
-                isList: widget.isList,
+                characters: characters,
+                isList: isList,
               ),
             ),
           ],
