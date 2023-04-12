@@ -11,7 +11,11 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   Future<void> _onCharactersOpened(
       CharactersOpened event, Emitter<CharactersState> emit) async {
     final charactersList = await apiClient.fetchCharacters();
-    emit(CharactersLoadSuccess(characters: charactersList, isList: true));
+    emit(CharactersLoadSuccess(
+      characters: charactersList,
+      isList: true,
+      defaultCharacters: charactersList,
+    ));
   }
 
   Future<void> _onCharactersViewSwitched(
@@ -26,19 +30,22 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       SearchCharacterByName event, Emitter<CharactersState> emit) async {
     if (state is CharactersLoadSuccess) {
       final currentState = state as CharactersLoadSuccess;
-      List<Character> searchedCharacters = [];
 
       if (event.name.isNotEmpty) {
-        searchedCharacters = currentState.characters
+        final searchedCharacters = currentState.characters
             .where((character) =>
                 character.name.toLowerCase().contains(event.name.toLowerCase()))
             .toList();
-      } else if (event.name.isEmpty) {
-        searchedCharacters = List.from(currentState.characters);
+        emit(currentState.copyWith(
+          characters: searchedCharacters,
+          isList: currentState.isList,
+        ));
+      } else {
+        emit(currentState.copyWith(
+          characters: currentState.defaultCharacters,
+          isList: currentState.isList,
+        ));
       }
-
-      emit(CharactersLoadSuccess(
-          characters: searchedCharacters, isList: currentState.isList));
     }
   }
 }

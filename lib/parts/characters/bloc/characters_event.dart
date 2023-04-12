@@ -12,3 +12,9 @@ class SearchCharacterByName extends CharactersEvent {
 
   SearchCharacterByName(this.name);
 }
+
+class CharactersNameChanged extends CharactersEvent {
+  final String name;
+
+  CharactersNameChanged(this.name);
+}

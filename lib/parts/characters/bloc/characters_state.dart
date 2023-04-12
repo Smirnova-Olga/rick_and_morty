@@ -10,31 +10,27 @@ class CharactersInitial extends CharactersState {}
 class CharactersLoadSuccess extends CharactersState {
   final List<Character> characters;
   final bool isList;
+  final List<Character> defaultCharacters;
 
   CharactersLoadSuccess({
+    required this.defaultCharacters,
     required this.characters,
     required this.isList,
   });
   @override
-  List<Object?> get props => [characters, isList];
+  List<Object?> get props => [defaultCharacters, characters, isList];
 
-  CharactersLoadSuccess copyWith({List<Character>? characters, bool? isList}) {
+  CharactersLoadSuccess copyWith({
+    List<Character>? defaultCharacters,
+    List<Character>? characters,
+    bool? isList,
+  }) {
     return CharactersLoadSuccess(
-        characters: characters ?? this.characters,
-        isList: isList ?? this.isList);
+      characters: characters ?? this.characters,
+      isList: isList ?? this.isList,
+      defaultCharacters: defaultCharacters ?? this.defaultCharacters,
+    );
   }
 }
 
 class CharactersLoadFailure extends CharactersState {}
-
-class SearchInitial extends CharactersState {}
-
-class SearchLoading extends CharactersState {}
-
-class SearchSuccess extends CharactersState {
-  final List<String> characters;
-
-  SearchSuccess(this.characters);
-}
-
-class SearchFailure extends CharactersState {}
