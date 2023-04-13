@@ -29,7 +29,7 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
     if (state is EpisodesLoadSuccess) {
       final currentState = state as EpisodesLoadSuccess;
       if (event.name.isNotEmpty) {
-        final searchedEpisodes = currentState.episodes
+        final searchedEpisodes = currentState.defaultEpisodes
             .where((episode) =>
                 episode.name.toLowerCase().contains(event.name.toLowerCase()))
             .toList();

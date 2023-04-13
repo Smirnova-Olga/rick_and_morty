@@ -32,7 +32,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       final currentState = state as CharactersLoadSuccess;
 
       if (event.name.isNotEmpty) {
-        final searchedCharacters = currentState.characters
+        final searchedCharacters = currentState.defaultCharacters
             .where((character) =>
                 character.name.toLowerCase().contains(event.name.toLowerCase()))
             .toList();
