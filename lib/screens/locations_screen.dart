@@ -16,10 +16,13 @@ class LocationsScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [
-          // FindTextFieldWidget(
-          //   hintText: locale.findLocation,
-          //   withSuffixIcon: true,
-          // ),
+          FindTextFieldWidget(
+            hintText: locale.findLocation,
+            withSuffixIcon: true,
+            onSearched: (String value) {
+              context.read<LocationsBloc>().add(SearchLocationByName(value));
+            },
+          ),
           _HeadLineWidget(locationsCount: locations.length),
           LocationListWidget(
             locations: locations,
