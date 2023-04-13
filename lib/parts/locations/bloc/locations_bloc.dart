@@ -20,7 +20,7 @@ class LocationsBloc extends Bloc<LocationsEvent, LocationsState> {
       final currentState = state as LocationsLoadSuccess;
 
       if (event.name.isNotEmpty) {
-        final searchedLocation = currentState.locations
+        final searchedLocation = currentState.defaultLocations
             .where((location) =>
                 location.name.toLowerCase().contains(event.name.toLowerCase()))
             .toList();
