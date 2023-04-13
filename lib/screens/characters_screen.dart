@@ -21,7 +21,7 @@ class CharactersScreen extends StatelessWidget {
             FindTextFieldWidget(
               hintText: locale.findCharacter,
               withSuffixIcon: true,
-              onSearched: (value) {
+              onSearched: (String value) {
                 context
                     .read<CharactersBloc>()
                     .add(SearchCharacterByName(value));

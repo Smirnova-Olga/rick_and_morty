@@ -9,15 +9,18 @@ class EpisodesInitial extends EpisodesState {}
 
 class EpisodesLoadSuccess extends EpisodesState {
   final List<Episode> episodes;
+  final List<Episode> defaultEpisodes;
 
-  EpisodesLoadSuccess({required this.episodes});
+  EpisodesLoadSuccess({required this.defaultEpisodes, required this.episodes});
 
   @override
   List<Object?> get props => [episodes];
 
-  EpisodesLoadSuccess copyWith({List<Episode>? episodes}) {
+  EpisodesLoadSuccess copyWith(
+      {List<Episode>? episodes, List<Episode>? defaultEpisodes}) {
     return EpisodesLoadSuccess(
       episodes: episodes ?? this.episodes,
+      defaultEpisodes: defaultEpisodes ?? this.defaultEpisodes,
     );
   }
 }

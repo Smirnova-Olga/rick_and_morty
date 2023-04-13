@@ -11,7 +11,8 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
   Future<void> _onEpisodesOpened(
       EpisodesOpened event, Emitter<EpisodesState> emit) async {
     final episodeList = await apiClient.fetchEpisodes();
-    emit(EpisodesLoadSuccess(episodes: episodeList));
+    emit(EpisodesLoadSuccess(
+        episodes: episodeList, defaultEpisodes: episodeList));
   }
 
   Future<void> _onEpisodesSeasonsSwitched(
@@ -24,7 +25,18 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
   }
 
   Future<void> _onEpisodesSearched(
-      EpisodesSearched event, Emitter<EpisodesState> emit) async {
-    // TODO: add realization
+      SearchEpisodeByName event, Emitter<EpisodesState> emit) async {
+    if (state is EpisodesLoadSuccess) {
+      final currentState = state as EpisodesLoadSuccess;
+      if (event.name.isNotEmpty) {
+        final searchedEpisodes = currentState.episodes
+            .where((episode) =>
+                episode.name.toLowerCase().contains(event.name.toLowerCase()))
+            .toList();
+        emit(currentState.copyWith(episodes: searchedEpisodes));
+      } else {
+        emit(currentState.copyWith(episodes: currentState.defaultEpisodes));
+      }
+    }
   }
 }
