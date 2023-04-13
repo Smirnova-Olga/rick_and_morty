@@ -16,16 +16,19 @@ class EpisodesScreen extends StatelessWidget {
       backgroundColor: ColorTheme.voilet,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(children: [
-          // FindTextFieldWidget(
-          //   hintText: locale.findEpisode,
-          //   withSuffixIcon: false,
-          // ),
-          const SizedBox(
-            height: 5,
-          ),
-          EpisodesListWidget(episodes: episodes),
-        ]),
+        child: Column(
+          children: [
+            FindTextFieldWidget(
+              hintText: locale.findEpisode,
+              withSuffixIcon: false,
+              onSearched: (String value) {
+                context.read<EpisodesBloc>().add(SearchEpisodeByName(value));
+              },
+            ),
+            const SizedBox(height: 5),
+            EpisodesListWidget(episodes: episodes),
+          ],
+        ),
       ),
     );
   }
