@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,6 +20,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final _formKey = GlobalKey<FormState>();
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
@@ -85,7 +87,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     size: 35,
                   ),
                   title: locale.darkTheme,
-                  onPressed: () {},
+                  widget: CupertinoSwitch(
+                    value: isSwitched,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitched = value;
+                      });
+                    },
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
@@ -99,7 +108,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     size: 35,
                   ),
                   title: 'Español',
-                  onPressed: () {},
+                  widget: Container(),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
@@ -146,14 +155,14 @@ class _RowWithButton extends StatelessWidget {
   final Icon icon;
   final String title;
 
-  final void Function()? onPressed;
+  final Widget widget;
 
   const _RowWithButton({
     Key? key,
     required this.rowTitle,
     required this.icon,
     required this.title,
-    required this.onPressed,
+    required this.widget,
   }) : super(key: key);
 
   @override
@@ -188,14 +197,7 @@ class _RowWithButton extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: onPressed,
-                icon: const Icon(
-                  Icons.chevron_right,
-                  color: ColorTheme.white000,
-                  size: 35,
-                ),
-              ),
+              widget,
             ],
           ),
         ),
