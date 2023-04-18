@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/ui_kit/ui_kit.dart';
 
 class ThemeCubit extends Cubit<ThemeData> {
-  ThemeCubit() : super(ThemeData.light());
+  ThemeCubit() : super(ColorTheme.lightTheme);
   void toggleTheme() {
-    if (state == ThemeData.light()) {
-      emit(ThemeData.dark());
+    if (state == ColorTheme.lightTheme) {
+      emit(ColorTheme.darkTheme);
     } else {
-      emit(ThemeData.light());
+      emit(ColorTheme.lightTheme);
     }
   }
 
