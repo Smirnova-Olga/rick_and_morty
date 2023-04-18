@@ -54,7 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Text(
                             'Oleg Belotserkovsky',
                             style: AppTextTheme.subtitle1
-                                .copyWith(color: ColorTheme.white000ForDark),
+                                .copyWith(color: ColorTheme.white100Dark),
                           ),
                           const SizedBox(height: 4),
                           Text(
@@ -82,7 +82,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   rowTitle: locale.design,
                   icon: const Icon(
                     Icons.palette_outlined,
-                    color: ColorTheme.white000ForDark,
+                    color: ColorTheme.white100Dark,
                     size: 35,
                   ),
                   title: locale.darkTheme,
@@ -99,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   rowTitle: locale.language,
                   icon: const Icon(
                     Icons.language,
-                    color: ColorTheme.white000ForDark,
+                    color: ColorTheme.white100Dark,
                     size: 35,
                   ),
                   title: 'Español',
@@ -186,7 +186,7 @@ class _RowWithButton extends StatelessWidget {
                       Text(
                         title,
                         style: AppTextTheme.subtitle1
-                            .copyWith(color: ColorTheme.white000ForDark),
+                            .copyWith(color: ColorTheme.white100Dark),
                       ),
                       const SizedBox(height: 4),
                     ],

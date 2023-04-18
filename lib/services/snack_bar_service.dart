@@ -17,28 +17,27 @@ class SnackBarService {
         title: Text(message),
         titlePadding: const EdgeInsets.all(30),
         titleTextStyle:
-            AppTextTheme.headline6.copyWith(color: ColorTheme.white000ForDark),
+            AppTextTheme.headline6.copyWith(color: ColorTheme.white100Dark),
         content: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Text(locale.incorrectData),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 30),
         contentTextStyle:
-            AppTextTheme.body2.copyWith(color: ColorTheme.white000ForDark),
+            AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
               minimumSize: const Size.fromHeight(30),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                side: const BorderSide(color: ColorTheme.blue900Dark),
+                side: const BorderSide(color: ColorTheme.blue900),
               ),
             ),
             onPressed: () => Navigator.pop(context, locale.ok),
             child: Text(
               locale.ok,
-              style: AppTextTheme.subtitle1
-                  .copyWith(color: ColorTheme.blue900Dark),
+              style: AppTextTheme.subtitle1.copyWith(color: ColorTheme.blue900),
             ),
           ),
         ],

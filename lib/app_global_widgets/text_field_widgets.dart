@@ -19,7 +19,7 @@ class EmailFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.left,
-      style: const TextStyle(color: ColorTheme.white000ForDark),
+      style: const TextStyle(color: ColorTheme.white100Dark),
       keyboardType: TextInputType.emailAddress,
       autocorrect: false,
       controller: emailTextInputController,
@@ -79,7 +79,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.left,
-      style: const TextStyle(color: ColorTheme.white000ForDark),
+      style: const TextStyle(color: ColorTheme.white100Dark),
       autocorrect: false,
       controller: widget.passwordTextInputController,
       obscureText: _isObscure,
@@ -111,7 +111,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
         hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark),
         suffixIcon: IconButton(
           icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
-          color: ColorTheme.white000ForDark,
+          color: ColorTheme.white100Dark,
           onPressed: () {
             togglePasswordView();
           },
@@ -136,7 +136,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextField(
         textAlign: TextAlign.left,
         style: const TextStyle(
-          color: ColorTheme.white000ForDark,
+          color: ColorTheme.white100Dark,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.5,
         ),

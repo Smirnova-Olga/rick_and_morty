@@ -66,14 +66,14 @@ class EpisodesListWidget extends StatelessWidget {
                             child: Text(
                               episodes[index].episode,
                               style: AppTextTheme.overline
-                                  .copyWith(color: ColorTheme.blue900Dark),
+                                  .copyWith(color: ColorTheme.blue900),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Text(
                             episodes[index].name,
                             style: AppTextTheme.subtitle3.copyWith(
-                              color: ColorTheme.white000ForDark,
+                              color: ColorTheme.white100Dark,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),

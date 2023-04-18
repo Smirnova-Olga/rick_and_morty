@@ -17,6 +17,7 @@ class CharactersScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
+            const SizedBox(height: 3),
             FindTextFieldWidget(
               hintText: locale.findCharacter,
               withSuffixIcon: true,
@@ -140,7 +141,7 @@ class GridWidget extends StatelessWidget {
                 child: Text(
                   character[index].name,
                   style: AppTextTheme.subtitle5.copyWith(
-                    color: ColorTheme.white000ForDark,
+                    color: ColorTheme.white100Dark,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -206,7 +207,7 @@ class ListWidget extends StatelessWidget {
                             child: Text(
                               character[index].name,
                               style: AppTextTheme.subtitle3.copyWith(
-                                color: ColorTheme.white000ForDark,
+                                color: ColorTheme.white100Dark,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),

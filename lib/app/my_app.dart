@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             theme: state,
+            darkTheme: ColorTheme.darkTheme,
             home: const HomeScreen(),
             // home: const FirebaseStream(),
           );
