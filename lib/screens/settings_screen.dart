@@ -7,6 +7,7 @@ import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/parts/theme/cubit/theme_cubit.dart';
 import 'package:rick_and_morty/screens/auth_screen.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
@@ -20,15 +21,13 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool isSwitched = false;
+
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
+    final themeCubit = context.watch<ThemeCubit>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorTheme.voilet,
-      ),
-      backgroundColor: ColorTheme.voilet,
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -55,13 +54,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Text(
                             'Oleg Belotserkovsky',
                             style: AppTextTheme.subtitle1
-                                .copyWith(color: ColorTheme.white000),
+                                .copyWith(color: ColorTheme.white000ForDark),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             'Rick',
                             style: AppTextTheme.subtitle1
-                                .copyWith(color: ColorTheme.white100),
+                                .copyWith(color: ColorTheme.white100Dark),
                           ),
                         ],
                       ),
@@ -83,17 +82,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   rowTitle: locale.design,
                   icon: const Icon(
                     Icons.palette_outlined,
-                    color: ColorTheme.white000,
+                    color: ColorTheme.white000ForDark,
                     size: 35,
                   ),
                   title: locale.darkTheme,
                   widget: CupertinoSwitch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
+                    value: themeCubit.state == ThemeData.dark(),
+                    onChanged: (_) => themeCubit.toggleTheme(),
                   ),
                 ),
                 const Padding(
@@ -104,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   rowTitle: locale.language,
                   icon: const Icon(
                     Icons.language,
-                    color: ColorTheme.white000,
+                    color: ColorTheme.white000ForDark,
                     size: 35,
                   ),
                   title: 'Español',
@@ -172,7 +167,8 @@ class _RowWithButton extends StatelessWidget {
       children: [
         Text(
           rowTitle,
-          style: AppTextTheme.subtitle1.copyWith(color: ColorTheme.white100),
+          style:
+              AppTextTheme.subtitle1.copyWith(color: ColorTheme.white100Dark),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -190,7 +186,7 @@ class _RowWithButton extends StatelessWidget {
                       Text(
                         title,
                         style: AppTextTheme.subtitle1
-                            .copyWith(color: ColorTheme.white000),
+                            .copyWith(color: ColorTheme.white000ForDark),
                       ),
                       const SizedBox(height: 4),
                     ],

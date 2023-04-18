@@ -10,34 +10,35 @@ class SnackBarService {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         actionsPadding: const EdgeInsets.all(30),
-        backgroundColor: ColorTheme.grey,
+        backgroundColor: ColorTheme.greyDark,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
         title: Text(message),
         titlePadding: const EdgeInsets.all(30),
         titleTextStyle:
-            AppTextTheme.headline6.copyWith(color: ColorTheme.white000),
+            AppTextTheme.headline6.copyWith(color: ColorTheme.white000ForDark),
         content: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Text(locale.incorrectData),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 30),
         contentTextStyle:
-            AppTextTheme.body2.copyWith(color: ColorTheme.white000),
+            AppTextTheme.body2.copyWith(color: ColorTheme.white000ForDark),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
               minimumSize: const Size.fromHeight(30),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                side: const BorderSide(color: ColorTheme.blue900),
+                side: const BorderSide(color: ColorTheme.blue900Dark),
               ),
             ),
             onPressed: () => Navigator.pop(context, locale.ok),
             child: Text(
               locale.ok,
-              style: AppTextTheme.subtitle1.copyWith(color: ColorTheme.blue900),
+              style: AppTextTheme.subtitle1
+                  .copyWith(color: ColorTheme.blue900Dark),
             ),
           ),
         ],

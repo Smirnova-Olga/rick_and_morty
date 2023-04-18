@@ -12,14 +12,15 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = AppTextTheme.subtitle1.copyWith(color: ColorTheme.white000);
+    final style =
+        AppTextTheme.subtitle1.copyWith(color: ColorTheme.white000ForDark);
     return TextButton(
       style: TextButton.styleFrom(
         minimumSize: const Size.fromHeight(50),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        backgroundColor: ColorTheme.grey,
+        backgroundColor: ColorTheme.greyDark,
       ),
       onPressed: onPressed,
       child: Padding(

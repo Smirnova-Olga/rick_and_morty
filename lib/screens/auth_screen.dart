@@ -35,7 +35,8 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white000);
+    final style =
+        AppTextTheme.body2.copyWith(color: ColorTheme.white000ForDark);
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -66,47 +67,44 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: SingleChildScrollView(
                   child: Form(
                     key: _formKey,
-                    child: Container(
-                      decoration: const BoxDecoration(color: ColorTheme.voilet),
-                      child: Padding(
-                        padding: const EdgeInsets.all(28.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 50),
-                            const _BackgroundImageWidget(),
-                            Text(locale.username, style: style),
-                            const SizedBox(height: 10),
-                            EmailFormField(
-                              emailTextInputController: _emailInputController,
-                              locale: locale,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(locale.password, style: style),
-                            const SizedBox(height: 10),
-                            PasswordFormField(
-                              passwordTextInputController:
-                                  _passwordInputController,
-                              locale: locale,
-                            ),
-                            const SizedBox(height: 30),
-                            ButtonWidget(
-                              text: locale.login,
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  _authenticateWithEmailAndPassword(context);
-                                } else {
-                                  SnackBarService.showDialogMessage(
-                                    context,
-                                    locale.unknownError,
-                                  );
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 20),
-                            const _NewAccountWidget(),
-                          ],
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(28.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 50),
+                          const _BackgroundImageWidget(),
+                          Text(locale.username, style: style),
+                          const SizedBox(height: 10),
+                          EmailFormField(
+                            emailTextInputController: _emailInputController,
+                            locale: locale,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(locale.password, style: style),
+                          const SizedBox(height: 10),
+                          PasswordFormField(
+                            passwordTextInputController:
+                                _passwordInputController,
+                            locale: locale,
+                          ),
+                          const SizedBox(height: 30),
+                          ButtonWidget(
+                            text: locale.login,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _authenticateWithEmailAndPassword(context);
+                              } else {
+                                SnackBarService.showDialogMessage(
+                                  context,
+                                  locale.unknownError,
+                                );
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          const _NewAccountWidget(),
+                        ],
                       ),
                     ),
                   ),
@@ -151,7 +149,7 @@ class _NewAccountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white100);
+    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark);
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +168,7 @@ class _NewAccountWidget extends StatelessWidget {
             },
             child: Text(
               locale.create,
-              style: style.copyWith(color: ColorTheme.green),
+              style: style.copyWith(color: ColorTheme.greenDark),
             ))
       ],
     );

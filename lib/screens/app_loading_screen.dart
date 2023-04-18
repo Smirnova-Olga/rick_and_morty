@@ -6,7 +6,6 @@ class AppLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: ColorTheme.voilet,
       body: Center(
         child: CircularProgressIndicator(),
       ),
