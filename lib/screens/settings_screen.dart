@@ -7,6 +7,7 @@ import 'package:rick_and_morty/app_global_widgets/button_widget.dart';
 import 'package:rick_and_morty/app_global_widgets/devider_widget.dart';
 import 'package:rick_and_morty/l10n/l10n.dart';
 import 'package:rick_and_morty/parts/auth/bloc/auth_bloc.dart';
+import 'package:rick_and_morty/parts/theme/cubit/theme_cubit.dart';
 import 'package:rick_and_morty/screens/auth_screen.dart';
 import 'package:rick_and_morty/services/snack_bar_service.dart';
 import 'package:rick_and_morty/ui_kit/ui_kit.dart';
@@ -20,22 +21,13 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool isDarkMode = false;
-
-  void _toggleTheme(bool value) {
-    setState(() {
-      isDarkMode = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
+    final themeCubit = context.watch<ThemeCubit>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorTheme.backgroundDark,
-      ),
-      backgroundColor: ColorTheme.backgroundDark,
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -95,8 +87,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   title: locale.darkTheme,
                   widget: CupertinoSwitch(
-                    value: isDarkMode,
-                    onChanged: _toggleTheme,
+                    value: themeCubit.state == ThemeData.dark(),
+                    onChanged: (_) => themeCubit.toggleTheme(),
                   ),
                 ),
                 const Padding(

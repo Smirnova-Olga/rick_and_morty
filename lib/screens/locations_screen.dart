@@ -12,7 +12,6 @@ class LocationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
-      backgroundColor: ColorTheme.backgroundDark,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [

@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorTheme.backgroundDark,
         actions: [
           IconButton(
             onPressed: () {
@@ -42,7 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      backgroundColor: ColorTheme.backgroundDark,
       body: Center(
         child: _widgetOptions[_selectedTab],
       ),

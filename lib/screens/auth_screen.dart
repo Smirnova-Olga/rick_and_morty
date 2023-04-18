@@ -67,48 +67,44 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: SingleChildScrollView(
                   child: Form(
                     key: _formKey,
-                    child: Container(
-                      decoration:
-                          const BoxDecoration(color: ColorTheme.backgroundDark),
-                      child: Padding(
-                        padding: const EdgeInsets.all(28.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 50),
-                            const _BackgroundImageWidget(),
-                            Text(locale.username, style: style),
-                            const SizedBox(height: 10),
-                            EmailFormField(
-                              emailTextInputController: _emailInputController,
-                              locale: locale,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(locale.password, style: style),
-                            const SizedBox(height: 10),
-                            PasswordFormField(
-                              passwordTextInputController:
-                                  _passwordInputController,
-                              locale: locale,
-                            ),
-                            const SizedBox(height: 30),
-                            ButtonWidget(
-                              text: locale.login,
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  _authenticateWithEmailAndPassword(context);
-                                } else {
-                                  SnackBarService.showDialogMessage(
-                                    context,
-                                    locale.unknownError,
-                                  );
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 20),
-                            const _NewAccountWidget(),
-                          ],
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(28.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 50),
+                          const _BackgroundImageWidget(),
+                          Text(locale.username, style: style),
+                          const SizedBox(height: 10),
+                          EmailFormField(
+                            emailTextInputController: _emailInputController,
+                            locale: locale,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(locale.password, style: style),
+                          const SizedBox(height: 10),
+                          PasswordFormField(
+                            passwordTextInputController:
+                                _passwordInputController,
+                            locale: locale,
+                          ),
+                          const SizedBox(height: 30),
+                          ButtonWidget(
+                            text: locale.login,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _authenticateWithEmailAndPassword(context);
+                              } else {
+                                SnackBarService.showDialogMessage(
+                                  context,
+                                  locale.unknownError,
+                                );
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          const _NewAccountWidget(),
+                        ],
                       ),
                     ),
                   ),

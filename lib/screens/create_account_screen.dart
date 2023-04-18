@@ -73,90 +73,86 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             // Displaying the sign up form if the user is not authenticated
             return Form(
               key: _formKey,
-              child: Container(
-                decoration:
-                    const BoxDecoration(color: ColorTheme.backgroundDark),
-                child: Padding(
-                  padding: const EdgeInsets.all(28.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          locale.createAccount,
-                          style: style,
-                        ),
+              child: Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        locale.createAccount,
+                        style: style,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: _HelpTextWidget(text: locale.name),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: _HelpTextWidget(text: locale.name),
+                    ),
+                    TextFieldWidget(
+                      hintText: locale.name,
+                      textInputController: _nameInputController,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: _HelpTextWidget(text: locale.surname),
+                    ),
+                    TextFieldWidget(
+                      hintText: locale.surname,
+                      textInputController: _surnameInputController,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: DividerWidget(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: _HelpTextWidget(text: locale.username),
+                    ),
+                    EmailFormField(
+                      emailTextInputController: _emailInputController,
+                      locale: locale,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: _HelpTextWidget(text: locale.password),
+                    ),
+                    PasswordFormField(
+                      passwordTextInputController: _passwordInputController,
+                      locale: locale,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: _HelpTextWidget(text: locale.password),
+                    ),
+                    PasswordFormField(
+                      passwordTextInputController:
+                          _passwordRepeatInputController,
+                      locale: locale,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: ButtonWidget(
+                        text: locale.create,
+                        onPressed: () {
+                          if (_passwordInputController.text !=
+                              _passwordRepeatInputController.text) {
+                            SnackBarService.showDialogMessage(
+                              context,
+                              locale.passwordMismatch,
+                            );
+                          } else if (_formKey.currentState!.validate()) {
+                            _createAccountWithEmailAndPassword(context);
+                          } else {
+                            SnackBarService.showDialogMessage(
+                              context,
+                              locale.unknownError,
+                            );
+                          }
+                        },
                       ),
-                      TextFieldWidget(
-                        hintText: locale.name,
-                        textInputController: _nameInputController,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: _HelpTextWidget(text: locale.surname),
-                      ),
-                      TextFieldWidget(
-                        hintText: locale.surname,
-                        textInputController: _surnameInputController,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: DividerWidget(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: _HelpTextWidget(text: locale.username),
-                      ),
-                      EmailFormField(
-                        emailTextInputController: _emailInputController,
-                        locale: locale,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: _HelpTextWidget(text: locale.password),
-                      ),
-                      PasswordFormField(
-                        passwordTextInputController: _passwordInputController,
-                        locale: locale,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: _HelpTextWidget(text: locale.password),
-                      ),
-                      PasswordFormField(
-                        passwordTextInputController:
-                            _passwordRepeatInputController,
-                        locale: locale,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: ButtonWidget(
-                          text: locale.create,
-                          onPressed: () {
-                            if (_passwordInputController.text !=
-                                _passwordRepeatInputController.text) {
-                              SnackBarService.showDialogMessage(
-                                context,
-                                locale.passwordMismatch,
-                              );
-                            } else if (_formKey.currentState!.validate()) {
-                              _createAccountWithEmailAndPassword(context);
-                            } else {
-                              SnackBarService.showDialogMessage(
-                                context,
-                                locale.unknownError,
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             );

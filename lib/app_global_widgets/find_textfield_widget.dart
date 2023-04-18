@@ -33,7 +33,6 @@ class FindTextFieldWidget extends StatelessWidget {
           borderSide: BorderSide(style: BorderStyle.none),
         ),
         filled: true,
-        fillColor: ColorTheme.greyDark,
         prefixIcon: Padding(
           padding: const EdgeInsets.fromLTRB(15, 12, 10, 12),
           child: SvgPicture.asset(Assets.icons.search.path),
