@@ -24,10 +24,19 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(
             bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              backgroundColor: ColorTheme.grey,
+              backgroundColor: ColorTheme.white000ForDark,
               elevation: 0,
-              selectedItemColor: ColorTheme.green,
-              unselectedItemColor: ColorTheme.white100,
+              selectedItemColor: ColorTheme.greenDark,
+              unselectedItemColor: ColorTheme.backgroundDark,
+              showUnselectedLabels: true,
+            ),
+          ),
+          darkTheme: ThemeData(
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              backgroundColor: ColorTheme.greyDark,
+              elevation: 0,
+              selectedItemColor: ColorTheme.greenDark,
+              unselectedItemColor: ColorTheme.white100Dark,
               showUnselectedLabels: true,
             ),
           ),

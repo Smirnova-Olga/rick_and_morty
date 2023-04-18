@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorTheme.voilet,
+        backgroundColor: ColorTheme.backgroundDark,
         actions: [
           IconButton(
             onPressed: () {
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      backgroundColor: ColorTheme.voilet,
+      backgroundColor: ColorTheme.backgroundDark,
       body: Center(
         child: _widgetOptions[_selectedTab],
       ),
@@ -50,27 +50,36 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedTab,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.icons.character.path),
+            icon: SvgPicture.asset(
+              Assets.icons.character.path,
+              color: ColorTheme.white100Dark,
+            ),
             label: locale.characters,
             activeIcon: SvgPicture.asset(
               Assets.icons.character.path,
-              color: ColorTheme.green,
+              color: ColorTheme.greenDark,
             ),
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.icons.location.path),
+            icon: SvgPicture.asset(
+              Assets.icons.location.path,
+              color: ColorTheme.white100Dark,
+            ),
             label: locale.locations,
             activeIcon: SvgPicture.asset(
               Assets.icons.location.path,
-              color: ColorTheme.green,
+              color: ColorTheme.greenDark,
             ),
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.icons.episode.path),
+            icon: SvgPicture.asset(
+              Assets.icons.episode.path,
+              color: ColorTheme.white100Dark,
+            ),
             label: locale.episodes,
             activeIcon: SvgPicture.asset(
               Assets.icons.episode.path,
-              color: ColorTheme.green,
+              color: ColorTheme.greenDark,
             ),
           ),
         ],

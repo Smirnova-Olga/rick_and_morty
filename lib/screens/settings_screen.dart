@@ -20,15 +20,22 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool isSwitched = false;
+  bool isDarkMode = false;
+
+  void _toggleTheme(bool value) {
+    setState(() {
+      isDarkMode = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorTheme.voilet,
+        backgroundColor: ColorTheme.backgroundDark,
       ),
-      backgroundColor: ColorTheme.voilet,
+      backgroundColor: ColorTheme.backgroundDark,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -55,13 +62,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Text(
                             'Oleg Belotserkovsky',
                             style: AppTextTheme.subtitle1
-                                .copyWith(color: ColorTheme.white000),
+                                .copyWith(color: ColorTheme.white000ForDark),
                           ),
                           const SizedBox(height: 4),
                           Text(
                             'Rick',
                             style: AppTextTheme.subtitle1
-                                .copyWith(color: ColorTheme.white100),
+                                .copyWith(color: ColorTheme.white100Dark),
                           ),
                         ],
                       ),
@@ -83,17 +90,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   rowTitle: locale.design,
                   icon: const Icon(
                     Icons.palette_outlined,
-                    color: ColorTheme.white000,
+                    color: ColorTheme.white000ForDark,
                     size: 35,
                   ),
                   title: locale.darkTheme,
                   widget: CupertinoSwitch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
+                    value: isDarkMode,
+                    onChanged: _toggleTheme,
                   ),
                 ),
                 const Padding(
@@ -104,7 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   rowTitle: locale.language,
                   icon: const Icon(
                     Icons.language,
-                    color: ColorTheme.white000,
+                    color: ColorTheme.white000ForDark,
                     size: 35,
                   ),
                   title: 'Español',
@@ -172,7 +175,8 @@ class _RowWithButton extends StatelessWidget {
       children: [
         Text(
           rowTitle,
-          style: AppTextTheme.subtitle1.copyWith(color: ColorTheme.white100),
+          style:
+              AppTextTheme.subtitle1.copyWith(color: ColorTheme.white100Dark),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -190,7 +194,7 @@ class _RowWithButton extends StatelessWidget {
                       Text(
                         title,
                         style: AppTextTheme.subtitle1
-                            .copyWith(color: ColorTheme.white000),
+                            .copyWith(color: ColorTheme.white000ForDark),
                       ),
                       const SizedBox(height: 4),
                     ],

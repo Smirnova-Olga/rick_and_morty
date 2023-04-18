@@ -13,7 +13,7 @@ class CharactersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
-      backgroundColor: ColorTheme.voilet,
+      backgroundColor: ColorTheme.backgroundDark,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -63,7 +63,7 @@ class _HeadLineWidget extends StatelessWidget {
           Text(
             locale.allCharactersCount(charactersCount),
             style: AppTextTheme.subtitle2.copyWith(
-              color: ColorTheme.white100,
+              color: ColorTheme.white100Dark,
             ),
           ),
           IconButton(
@@ -130,8 +130,8 @@ class GridWidget extends StatelessWidget {
                   character[index].status.toUpperCase(),
                   style: AppTextTheme.subtitle2.copyWith(
                     color: character[index].status == 'Alive'
-                        ? ColorTheme.green
-                        : ColorTheme.red,
+                        ? ColorTheme.greenDark
+                        : ColorTheme.redDark,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -141,7 +141,7 @@ class GridWidget extends StatelessWidget {
                 child: Text(
                   character[index].name,
                   style: AppTextTheme.subtitle5.copyWith(
-                    color: ColorTheme.white000,
+                    color: ColorTheme.white000ForDark,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -149,7 +149,7 @@ class GridWidget extends StatelessWidget {
               Text(
                 '${character[index].species}, ${character[index].gender}',
                 style: AppTextTheme.subtitle4.copyWith(
-                  color: ColorTheme.white100,
+                  color: ColorTheme.white100Dark,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -196,8 +196,8 @@ class ListWidget extends StatelessWidget {
                               character[index].status.toUpperCase(),
                               style: AppTextTheme.subtitle2.copyWith(
                                 color: character[index].status == 'Alive'
-                                    ? ColorTheme.green
-                                    : ColorTheme.red,
+                                    ? ColorTheme.greenDark
+                                    : ColorTheme.redDark,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -207,7 +207,7 @@ class ListWidget extends StatelessWidget {
                             child: Text(
                               character[index].name,
                               style: AppTextTheme.subtitle3.copyWith(
-                                color: ColorTheme.white000,
+                                color: ColorTheme.white000ForDark,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -215,7 +215,7 @@ class ListWidget extends StatelessWidget {
                           Text(
                             '${character[index].species}, ${character[index].gender}',
                             style: AppTextTheme.subtitle4.copyWith(
-                              color: ColorTheme.white100,
+                              color: ColorTheme.white100Dark,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),

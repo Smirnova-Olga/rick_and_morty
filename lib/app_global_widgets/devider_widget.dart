@@ -11,7 +11,7 @@ class DividerWidget extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 1.5,
-      color: ColorTheme.grey,
+      color: ColorTheme.greyDark,
     );
   }
 }

@@ -45,7 +45,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final style = AppTextTheme.headline7.copyWith(color: ColorTheme.white100);
+    final style =
+        AppTextTheme.headline7.copyWith(color: ColorTheme.white100Dark);
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -73,7 +74,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             return Form(
               key: _formKey,
               child: Container(
-                decoration: const BoxDecoration(color: ColorTheme.voilet),
+                decoration:
+                    const BoxDecoration(color: ColorTheme.backgroundDark),
                 child: Padding(
                   padding: const EdgeInsets.all(28.0),
                   child: Column(
@@ -187,7 +189,7 @@ class _HelpTextWidget extends StatelessWidget {
     return Text(
       text,
       style: AppTextTheme.body2.copyWith(
-        color: ColorTheme.white000,
+        color: ColorTheme.white000ForDark,
       ),
     );
   }

@@ -18,7 +18,7 @@ class FindTextFieldWidget extends StatelessWidget {
       onChanged: onSearched,
       textAlign: TextAlign.left,
       style: const TextStyle(
-        color: ColorTheme.white000,
+        color: ColorTheme.white000ForDark,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
       ),
@@ -33,13 +33,13 @@ class FindTextFieldWidget extends StatelessWidget {
           borderSide: BorderSide(style: BorderStyle.none),
         ),
         filled: true,
-        fillColor: ColorTheme.grey,
+        fillColor: ColorTheme.greyDark,
         prefixIcon: Padding(
           padding: const EdgeInsets.fromLTRB(15, 12, 10, 12),
           child: SvgPicture.asset(Assets.icons.search.path),
         ),
         hintText: hintText,
-        hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
+        hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100Dark),
         suffixIcon: withSuffixIcon
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -48,7 +48,7 @@ class FindTextFieldWidget extends StatelessWidget {
                   Container(
                     height: 24,
                     width: 1,
-                    color: ColorTheme.white100,
+                    color: ColorTheme.white100Dark,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 12, 15, 12),

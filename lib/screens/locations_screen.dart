@@ -12,7 +12,7 @@ class LocationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
-      backgroundColor: ColorTheme.voilet,
+      backgroundColor: ColorTheme.backgroundDark,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [
@@ -50,7 +50,7 @@ class _HeadLineWidget extends StatelessWidget {
           Text(
             locale.allLocationsCount(locationsCount),
             style: AppTextTheme.subtitle2.copyWith(
-              color: ColorTheme.white100,
+              color: ColorTheme.white100Dark,
             ),
             textAlign: TextAlign.left,
           ),
@@ -82,7 +82,7 @@ class LocationListWidget extends StatelessWidget {
                 height: 218,
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
-                  color: ColorTheme.grey,
+                  color: ColorTheme.greyDark,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -97,7 +97,7 @@ class LocationListWidget extends StatelessWidget {
                       child: Text(
                         locations[index].name,
                         style: AppTextTheme.headline6
-                            .copyWith(color: ColorTheme.white000),
+                            .copyWith(color: ColorTheme.white000ForDark),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -106,7 +106,7 @@ class LocationListWidget extends StatelessWidget {
                       child: Text(
                         '${locations[index].type}, ${locations[index].dimension}',
                         style: AppTextTheme.subtitle4
-                            .copyWith(color: ColorTheme.white100),
+                            .copyWith(color: ColorTheme.white100Dark),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

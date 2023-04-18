@@ -35,7 +35,8 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white000);
+    final style =
+        AppTextTheme.body2.copyWith(color: ColorTheme.white000ForDark);
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -67,7 +68,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   child: Form(
                     key: _formKey,
                     child: Container(
-                      decoration: const BoxDecoration(color: ColorTheme.voilet),
+                      decoration:
+                          const BoxDecoration(color: ColorTheme.backgroundDark),
                       child: Padding(
                         padding: const EdgeInsets.all(28.0),
                         child: Column(
@@ -151,7 +153,7 @@ class _NewAccountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white100);
+    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark);
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +172,7 @@ class _NewAccountWidget extends StatelessWidget {
             },
             child: Text(
               locale.create,
-              style: style.copyWith(color: ColorTheme.green),
+              style: style.copyWith(color: ColorTheme.greenDark),
             ))
       ],
     );

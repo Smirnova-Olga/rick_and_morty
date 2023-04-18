@@ -19,7 +19,7 @@ class EmailFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.left,
-      style: const TextStyle(color: ColorTheme.white000),
+      style: const TextStyle(color: ColorTheme.white000ForDark),
       keyboardType: TextInputType.emailAddress,
       autocorrect: false,
       controller: emailTextInputController,
@@ -37,16 +37,16 @@ class EmailFormField extends StatelessWidget {
           borderSide: BorderSide(style: BorderStyle.none),
         ),
         filled: true,
-        fillColor: ColorTheme.grey,
+        fillColor: ColorTheme.greyDark,
         prefixIcon: Padding(
           padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
           child: SvgPicture.asset(
             Assets.icons.userIcon.path,
-            color: ColorTheme.white100,
+            color: ColorTheme.white100Dark,
           ),
         ),
         hintText: locale.username,
-        hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100),
+        hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark),
       ),
     );
   }
@@ -79,7 +79,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.left,
-      style: const TextStyle(color: ColorTheme.white000),
+      style: const TextStyle(color: ColorTheme.white000ForDark),
       autocorrect: false,
       controller: widget.passwordTextInputController,
       obscureText: _isObscure,
@@ -99,19 +99,19 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
           borderSide: BorderSide(style: BorderStyle.none),
         ),
         filled: true,
-        fillColor: ColorTheme.grey,
+        fillColor: ColorTheme.greyDark,
         prefixIcon: Padding(
           padding: const EdgeInsets.fromLTRB(16, 12, 20, 12),
           child: SvgPicture.asset(
             Assets.icons.passwordIcon.path,
-            color: ColorTheme.white100,
+            color: ColorTheme.white100Dark,
           ),
         ),
         hintText: widget.locale.password,
-        hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100),
+        hintStyle: AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark),
         suffixIcon: IconButton(
           icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
-          color: ColorTheme.white000,
+          color: ColorTheme.white000ForDark,
           onPressed: () {
             togglePasswordView();
           },
@@ -136,7 +136,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextField(
         textAlign: TextAlign.left,
         style: const TextStyle(
-          color: ColorTheme.white000,
+          color: ColorTheme.white000ForDark,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.5,
         ),
@@ -151,9 +151,10 @@ class TextFieldWidget extends StatelessWidget {
             borderSide: BorderSide(style: BorderStyle.none),
           ),
           filled: true,
-          fillColor: ColorTheme.grey,
+          fillColor: ColorTheme.greyDark,
           hintText: hintText,
-          hintStyle: AppTextTheme.body1.copyWith(color: ColorTheme.white100),
+          hintStyle:
+              AppTextTheme.body1.copyWith(color: ColorTheme.white100Dark),
         ));
   }
 }

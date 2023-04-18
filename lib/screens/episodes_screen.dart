@@ -13,7 +13,7 @@ class EpisodesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Scaffold(
-      backgroundColor: ColorTheme.voilet,
+      backgroundColor: ColorTheme.backgroundDark,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -67,21 +67,21 @@ class EpisodesListWidget extends StatelessWidget {
                             child: Text(
                               episodes[index].episode,
                               style: AppTextTheme.overline
-                                  .copyWith(color: ColorTheme.blue900),
+                                  .copyWith(color: ColorTheme.blue900Dark),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Text(
                             episodes[index].name,
                             style: AppTextTheme.subtitle3.copyWith(
-                              color: ColorTheme.white000,
+                              color: ColorTheme.white000ForDark,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
                             episodes[index].airDate,
                             style: AppTextTheme.body2.copyWith(
-                              color: ColorTheme.white100,
+                              color: ColorTheme.white100Dark,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
