@@ -185,7 +185,7 @@ class _HelpTextWidget extends StatelessWidget {
     return Text(
       text,
       style: AppTextTheme.body2.copyWith(
-        color: ColorTheme.white000ForDark,
+        color: ColorTheme.white100Dark,
       ),
     );
   }

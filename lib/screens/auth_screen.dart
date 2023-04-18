@@ -35,8 +35,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final style =
-        AppTextTheme.body2.copyWith(color: ColorTheme.white000ForDark);
+    final style = AppTextTheme.body2.copyWith(color: ColorTheme.white100Dark);
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {

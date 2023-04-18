@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
-    final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
         actions: [

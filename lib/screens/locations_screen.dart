@@ -96,7 +96,7 @@ class LocationListWidget extends StatelessWidget {
                       child: Text(
                         locations[index].name,
                         style: AppTextTheme.headline6
-                            .copyWith(color: ColorTheme.white000ForDark),
+                            .copyWith(color: ColorTheme.white100Dark),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

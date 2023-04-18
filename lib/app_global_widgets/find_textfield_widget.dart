@@ -18,7 +18,7 @@ class FindTextFieldWidget extends StatelessWidget {
       onChanged: onSearched,
       textAlign: TextAlign.left,
       style: const TextStyle(
-        color: ColorTheme.white000ForDark,
+        color: ColorTheme.white100Dark,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
       ),
