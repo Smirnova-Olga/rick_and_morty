@@ -45,6 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
+        selectedLabelStyle: const TextStyle(color: ColorTheme.greenDark),
+        useLegacyColorScheme: false,
+        selectedFontSize: 12.0,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
