@@ -17,6 +17,7 @@ class EpisodesScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
+            const SizedBox(height: 3),
             FindTextFieldWidget(
               hintText: locale.findEpisode,
               withSuffixIcon: false,
